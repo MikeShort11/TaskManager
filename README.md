@@ -2,9 +2,9 @@
 A Task manager for CS2450
 
 ### Authors:
-Matt Gubler - Product Owner
-Kevin Pett - Recorder
-Michael Short - Scrum Master
+- Matt Gubler - Product Owner
+- Kevin Pett - Recorder
+- Michael Short - Scrum Master
 
 ## Repository Link:
 https://github.com/MikeShort11/TaskManager
