@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="TaskManager" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="TaskManager" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="TaskManagerProject" project-jdk-type="Python SDK" />
 </project>
