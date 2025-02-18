@@ -28,3 +28,7 @@ class TaskList:
     def __iter__(self):
         """Yields an iterator of all the objects and their data members."""
         pass
+
+    def __str__(self):
+        """Yields a string representation of the TaskList's dictionary"""
+        pass
