@@ -9,13 +9,13 @@ def test_delete():
 
     test_list.add_task("example 1")
     test_list.delete_task("example 1")
-    assert str(test_list) == "Empty"
+    assert print(test_list) == "Empty"
 
     test_list.add_task("example 2")
     test_list.add_task("example 3")
     test_list.add_task("example 4")
     test_list.add_task("example 5")
     test_list.delete_task("example 4")
-    assert str(test_list) == "example 2, example 3, example 5"
+    assert print(test_list) == "example 2, example 3, example 5"
 
 
