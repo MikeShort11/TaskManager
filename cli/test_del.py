@@ -1,15 +1,21 @@
-import task_list
+from task_list import TaskList
 
-test_list = task_list()
+test_list = TaskList()
 
-# test_list.del("example 1") == error
+def test_delete_empty():
+    assert test_list.delete_task("example 1") == KeyError
 
-test_list.add("example 1")
-# test_list.del("example 1") == empty list
+def test_delete():
 
-test_list.add("example 2")
-test_list.add("example 3")
-test_list.add("example 4")
-test_list.add("example 5")
-# test_list.del("example 4") == list still in proper order with 4 gone.
+    test_list.add_task("example 1")
+    test_list.delete_task("example 1")
+    assert str(test_list) == "Empty"
+
+    test_list.add_task("example 2")
+    test_list.add_task("example 3")
+    test_list.add_task("example 4")
+    test_list.add_task("example 5")
+    test_list.delete_task("example 4")
+    assert str(test_list) == "example 2, example 3, example 5"
+
 
