@@ -21,9 +21,17 @@ class TaskList:
         if self.json and self.size != prev_size:
             self._save_tasks(self.json)
 
-    def delete_task(self, name):
+    def delete_task(self, title):
         """Deletes a specified task from the task_list dictionary."""
-        pass
+        try:
+            prev_size = self.size
+            self.list.pop(title)
+            self._get_size()
+            if self.json and self.size != prev_size:
+                self._save_tasks(self.json)
+        except KeyError:
+            print("Key not found!")
+            return "Key not found!"
 
     def _get_size(self):
         self.size = len(self.list)
@@ -38,8 +46,14 @@ class TaskList:
 
     def __iter__(self):
         """Yields an iterator of all the objects and their data members."""
-        pass
+        for key, task in self.list.items():
+            yield key
+
 
     def __str__(self):
         """Yields a string representation of the TaskList's dictionary"""
-        pass
+        return_string = ""
+        for key, task in self.list.items():
+            return_string += key + ", "
+        return return_string
+
