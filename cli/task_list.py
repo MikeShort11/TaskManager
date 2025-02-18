@@ -14,7 +14,7 @@ class TaskList:
     def add_task(self, title):
         """Uses the Task class to create a task object and
         adds it to the task_list dictionary.
-        Automatically calls _save_tasks."""
+        Automatically calls _save_tasks if needed."""
         prev_size = self.size
         self.list[title] = task.Task(title)
         self._get_size()
@@ -22,7 +22,8 @@ class TaskList:
             self._save_tasks(self.json)
 
     def delete_task(self, title):
-        """Deletes a specified task from the task_list dictionary."""
+        """Deletes a specified task from the task_list dictionary.
+        Automatically calls _save_tasks if needed."""
         try:
             prev_size = self.size
             self.list.pop(title)
@@ -34,6 +35,7 @@ class TaskList:
             return "Key not found!"
 
     def _get_size(self):
+        """Updates the current size of the list dictionary."""
         self.size = len(self.list)
 
     def _load_tasks(self, json_name):
@@ -45,15 +47,19 @@ class TaskList:
         pass
 
     def __iter__(self):
-        """Yields an iterator of all the objects and their data members."""
+        """Yields an iterator of all the objects' titles."""
         for key, task in self.list.items():
             yield key
 
 
     def __str__(self):
-        """Yields a string representation of the TaskList's dictionary"""
+        """Returns a string representation of the TaskList's dictionary"""
         return_string = ""
         for key, task in self.list.items():
             return_string += key + ", "
-        return return_string
+        return_string = return_string[:-2]
 
+        if return_string == "":
+            return "No tasks found in this list."
+
+        return return_string
