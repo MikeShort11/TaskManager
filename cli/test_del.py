@@ -10,7 +10,7 @@ def test_delete():
 
     test_list.add_task("example 1")
     test_list.delete_task("example 1")
-    assert print(test_list) == "Empty"
+    assert print(test_list) == "No tasks found in this list."
 
     test_list.add_task("example 2")
     test_list.add_task("example 3")
