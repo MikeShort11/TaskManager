@@ -10,6 +10,8 @@ class TaskList:
         if json_name:
             self._load_tasks(json_name)
 
+    def write_json(self, file_name):
+        file_name = json.dumps(self.list, indent=4)
 
     def add_task(self, title):
         """Uses the Task class to create a task object and
@@ -49,6 +51,7 @@ class TaskList:
         file_path = json_name
         with open(file_path, 'w') as file:
             json.dump(self.list, file, indent=4)
+        self._load_tasks(json_name)
 
     def __iter__(self):
         """Yields an iterator of all the objects' titles."""
