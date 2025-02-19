@@ -1,4 +1,8 @@
-import TaskList
-import Task
+import task_list
 
-TaskList.add("Test_name")
+test_list = task_list.TaskList()
+
+def test_add_task():
+
+    test_list.add_task("Test_name")
+    assert print(test_list.list["Test_name"]) == "Test_name"
