@@ -40,11 +40,15 @@ class TaskList:
 
     def _load_tasks(self, json_name):
         """Loads the list of tasks in the JSON into the dictionary."""
-        pass
+        f = open(json_name)
+        data = json.load(f)
+        self.list = data
 
     def _save_tasks(self, json_name):
         """Saves new tasks into the JSON from the dictionary"""
-        pass
+        file_path = json_name
+        with open(file_path, 'w') as file:
+            json.dump(self.list, file, indent=4)
 
     def __iter__(self):
         """Yields an iterator of all the objects' titles."""
