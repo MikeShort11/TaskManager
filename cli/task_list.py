@@ -40,9 +40,9 @@ class TaskList:
 
     def _load_tasks(self, json_name):
         """Loads the list of tasks in the JSON into the dictionary."""
-        f = open(json_name)
-        data = json.load(f)
-        self.list = data
+        with open(json_name) as file:  # 'read' mode is default in open
+            data = json.load(file)
+            self.list = data
 
     def _save_tasks(self, json_name):
         """Saves new tasks into the JSON from the dictionary"""
