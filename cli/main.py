@@ -47,6 +47,7 @@ def edit(task_manager_list):
     if new_title != "":
         task_manager_list.list[edit_task_name].title = new_title
         task_manager_list.list[new_title] = task_manager_list.list.pop(edit_task_name)
+        edit_task_name = new_title
     new_date = input("New date?")
     if new_date != "":
         task_manager_list.list[edit_task_name].date = new_date
