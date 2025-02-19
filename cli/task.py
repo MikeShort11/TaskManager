@@ -17,12 +17,14 @@ class Task:
 
         self.description = description
         self.category = category
+
     def parse_date(self, date_str):
         # converts date str into date time
         try:
             return datetime.strptime(date_str, '%Y-%m-%d').date()
         except ValueError:
             raise ValueError("invalid date formate. try YYYY-MM-DD")
+
     def parse_time(self, time_str):
         # converts time str into date time
         try:

@@ -19,9 +19,10 @@ def welcome_menu():
         elif selection == "2":
             task_manager_list = TaskList()
             print("Please name the Task Manager")
-            json_name = input()
-            json_object = json.dumps(json_name, indent=4)
-            task_manager_list.json = json_object
+            json_name = input() + ".json"
+            with open(json_name, "w"):
+                pass
+            task_manager_list.json = json_name
             break
         else:
             print("Please enter 1 or 2")
