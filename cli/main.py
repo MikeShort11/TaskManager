@@ -33,28 +33,32 @@ def view_tasks(task_manager_list):
     print(task_manager_list)
 
 def add(task_manager_list):
-     title = input("New task name?")
-     task_manager_list.add_task(title)
+    title = input("New task name? ")
+    task_manager_list.add_task(title)
+
 def delete(task_manager_list):
     title = input("Task to delete?")
     task_manager_list.delete_task(title)
+
 def edit(task_manager_list):
+    print("task manager list dictonary:\n")
+    print(task_manager_list.list)
     edit_task_name = input("Task to edit?")
     new_title = input("New title name?")
     if new_title != "":
-        task_manager_list[edit_task_name].title = new_title
+        task_manager_list.list[edit_task_name].title = new_title
     new_date = input("New date?")
     if new_date != "":
-        task_manager_list[edit_task_name].date = new_date
+        task_manager_list.list[edit_task_name].date = new_date
     new_time = input("New time?")
     if new_time != "":
-        task_manager_list[edit_task_name].time = new_time
+        task_manager_list.list[edit_task_name].time = new_time
     new_description = input("New description?")
     if new_description != "":
-        task_manager_list[edit_task_name].description = new_description
+        task_manager_list.list[edit_task_name].description = new_description
     new_category = input("New category?")
     if new_category != "":
-        task_manager_list[edit_task_name].category = new_category
+        task_manager_list.list[edit_task_name].category = new_category
     task_manager_list._save_tasks(task_manager_list.json)
 
 
@@ -76,7 +80,7 @@ def main(*args, **kwargs):
     task_manager_list = welcome_menu()
     command_dict = {"add": lambda: add(task_manager_list),
                     "delete": lambda: delete(task_manager_list),
-                    "edit": lambda: edit(),
+                    "edit": lambda: edit(task_manager_list),
                     "quit": lambda: exit(),
                     "help": lambda: help_menu()
                     }
@@ -84,7 +88,7 @@ def main(*args, **kwargs):
         view_tasks(task_manager_list)
         command = input("Enter a command (type 'help' for help): ")
         try:
-            command_dict[command]
+            command_dict[command]()
         except KeyError:
             print("Command not recognized. Press h for help")
 
