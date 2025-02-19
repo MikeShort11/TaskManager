@@ -1,19 +1,57 @@
 from datetime import datetime
+import json
 
 class Task:
-    def __init__(self,title:str,date:str,time:str,description:str,catagory:str):
-        """Constructs a new task object with the following data-"""
+    def __init__(self, title: str, date=0, time=0, description: str = "enter description here", category: str = "no category"):
+        """Constructs a new task object with the following data"""
         self.title = title
-        self.date = datetime.strptime(date, '%Y-%m-%d').date()
-        self.time = datetime.strptime(time, '%H:%M').time()
+        if isinstance(date, int):
+            self.date = "no date"
+        else:
+            self.date = self.parse_date(date) #converts date str into date time
+
+        if isinstance(time, int):
+            self.time = "no time"
+        else:
+            self.time = self.parse_time(time) #converts time str into date time
+
         self.description = description
-        self.category = catagory
+        self.category = category
+    def parse_date(self, date_str):
+        # converts date str into date time
+        try:
+            return datetime.strptime(date_str, '%Y-%m-%d').date()
+        except ValueError:
+            raise ValueError("invalid date formate. try YYYY-MM-DD")
+    def parse_time(self, time_str):
+        # converts time str into date time
+        try:
+            return datetime.strptime(time_str, '%H:%M').time()
+        except ValueError:
+            raise ValueError("invalid time formate. try HH:MM")
 
 
-    def edit_task (self, arg1, arg2, arg_etc):
-        """Edits a task's members based on the incoming data in the arguments.
-        Knows what to edit and not to edit.
-        Type checks and returns an error message if failed."""
-        pass
-task = Task("Meeting", "2025-02-16", "14:30", "Discuss project updates", "Work")
-print(task)
+        #maybe we need this later
+    '''def to_dict(self):
+        """Converts task to a dictionary for JSON"""
+        return {"title": self.title,
+                "date": self.date.strftime('%Y-%m-%d'),
+                "time": self.time.strftime('%H:%M'),
+                "description": self.description,
+                "category": self.category
+            }
+    @classmethod
+    def from_dict(cls, data):
+        """creates a Tasks object from a dictionary"""
+        return cls(
+            data["title"],
+            data["date"],
+            data["time"],
+            data["description"],
+            data["category"]
+        )'''
+    def __str__(self):
+        return f" {self.title}, {self.date}, {self.time}, {self.description}, {self.category}"
+
+"""task = Task("Meeting")
+print(task)"""
