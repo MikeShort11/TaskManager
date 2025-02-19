@@ -89,3 +89,5 @@ def main(*args, **kwargs):
             print("Command not recognized. Press h for help")
 
 
+if __name__ == "__main__":
+    main()
