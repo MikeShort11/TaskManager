@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 import json
 
 class Task:
@@ -17,12 +17,14 @@ class Task:
 
         self.description = description
         self.category = category
+
     def parse_date(self, date_str):
         # converts date str into date time
         try:
             return datetime.strptime(date_str, '%Y-%m-%d').date()
         except ValueError:
             raise ValueError("invalid date formate. try YYYY-MM-DD")
+
     def parse_time(self, time_str):
         # converts time str into date time
         try:
@@ -31,12 +33,12 @@ class Task:
             raise ValueError("invalid time formate. try HH:MM")
 
 
-        #maybe we need this later
-    '''def to_dict(self):
+
+    def to_dict(self):
         """Converts task to a dictionary for JSON"""
         return {"title": self.title,
-                "date": self.date.strftime('%Y-%m-%d'),
-                "time": self.time.strftime('%H:%M'),
+                "date": self.date.strftime('%Y-%m-%d') if isinstance(self.date, datetime.date) else "no date",
+                "time": self.date.strftime('%H:%M') if isinstance(self.time, datetime.time) else "no time",
                 "description": self.description,
                 "category": self.category
             }
@@ -49,7 +51,7 @@ class Task:
             data["time"],
             data["description"],
             data["category"]
-        )'''
+        )
     def __str__(self):
         return f" {self.title}, {self.date}, {self.time}, {self.description}, {self.category}"
 
