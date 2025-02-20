@@ -42,11 +42,11 @@ def delete(task_manager_list):
 
 def edit(task_manager_list):
     print("task manager list dictonary:\n")
-    print(task_manager_list.list)
     edit_task_name = input("Task to edit?")
     new_title = input("New title name?")
     if new_title != "":
         task_manager_list.list[edit_task_name].title = new_title
+        task_manager_list.list[new_title] = task_manager_list.list.pop(edit_task_name)
     new_date = input("New date?")
     if new_date != "":
         task_manager_list.list[edit_task_name].date = new_date
