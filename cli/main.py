@@ -1,6 +1,5 @@
 from task_list import TaskList
 import task
-from datetime import datetime
 import json
 import os
 
@@ -33,6 +32,7 @@ def view_tasks(task_manager_list):
     os.system('cls' if os.name == 'nt' else 'clear')
     print(task_manager_list)
 
+#def inspect_task(task_manager_list): future tech
 def add(task_manager_list):
     title = input("New task name? ")
     task_manager_list.add_task(title)
