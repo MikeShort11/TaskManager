@@ -1,5 +1,5 @@
 import json
-import task
+from task import Task
 
 class TaskList:
     def __init__(self, json_name = None):
@@ -10,15 +10,12 @@ class TaskList:
         if json_name:
             self._load_tasks(json_name)
 
-    def write_json(self, file_name):
-        file_name = json.dumps(self.list, indent=4)
-
     def add_task(self, title):
         """Uses the Task class to create a task object and
         adds it to the task_list dictionary.
         Automatically calls _save_tasks if needed."""
         prev_size = self.size
-        self.list[title] = task.Task(title)
+        self.list[title] = Task(title)
         self._get_size()
         if self.json and self.size != prev_size:
             self._save_tasks(self.json)
@@ -44,13 +41,13 @@ class TaskList:
         """Loads the list of tasks in the JSON into the dictionary."""
         with open(json_name) as file:  # 'read' mode is default in open
             data = json.load(file)
-            self.list = data
+            self.list = {task_data["Title"]: Task.from_dict(task_data) for task_data in data}
 
     def _save_tasks(self, json_name):
         """Saves new tasks into the JSON from the dictionary"""
         file_path = json_name
         with open(file_path, 'w') as file:
-            json.dump(self.list, file, indent=4)
+            json.dump([task.to_dict() for task in self.list.values()], file, indent=4)
         self._load_tasks(json_name)
 
     def __iter__(self):
