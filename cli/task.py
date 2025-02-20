@@ -2,7 +2,14 @@ import datetime
 import json
 
 class Task:
-    def __init__(self, title: str, date=0, time=0, description: str = "enter description here", category: str = "no category"):
+    def __init__(
+            self,
+            title: str,
+            date=0,
+            time=0,
+            description: str = "enter description here",
+            category: str = "no category"
+    ):
         """Constructs a new task object with the following data"""
         self.title = title
         if isinstance(date, int):

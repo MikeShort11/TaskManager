@@ -14,24 +14,29 @@ class TaskList:
         """Uses the Task class to create a task object and
         adds it to the task_list dictionary.
         Automatically calls _save_tasks if needed."""
+        if title in self.list:
+            return f"'{title}' is taken, try another name."
         prev_size = self.size
         self.list[title] = Task(title)
         self._get_size()
         if self.json and self.size != prev_size:
             self._save_tasks(self.json)
+        return f"{title} task added successfully."
+
 
     def delete_task(self, title):
         """Deletes a specified task from the task_list dictionary.
         Automatically calls _save_tasks if needed."""
         try:
             prev_size = self.size
-            self.list.pop(title)
+            del self.list[title]
             self._get_size()
             if self.json and self.size != prev_size:
                 self._save_tasks(self.json)
         except KeyError:
-            print("Key not found!")
             return "Key not found!"
+        else:
+            return f"{title} deleted."
 
     def _get_size(self):
         """Updates the current size of the list dictionary."""
@@ -61,7 +66,7 @@ class TaskList:
         return_string = ""
         for key, task in self.list.items():
             return_string += key + ", "
-        return_string = return_string[:-2]
+        return_string = return_string[:-2]  # Gets rid of last item's ", "
 
         if return_string == "":
             return "No tasks found in this list."
