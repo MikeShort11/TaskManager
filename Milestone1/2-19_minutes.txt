@@ -1,0 +1,13 @@
+Group 3 Milestone 1 Meeting Minutes 2 of 2
+Date: 2/19/25
+Present:
+    Matt Gubler - Product Owner
+    Kevin Pett - Recorder
+    Michael Short - Scrum Master
+    Aidan Dougherty - Programmer (remotely via Discord)
+
+Minutes:
+11:35am - Start meeting
+11:40 - Discussion on what's left to finish for MS 1
+11:45 - Discussion on how to merge branch code into main
+11:55 - Programming Main function
