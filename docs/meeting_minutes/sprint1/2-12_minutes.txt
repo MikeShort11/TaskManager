@@ -1,12 +1,18 @@
 2/12/25 Weekly Meeting 1/2 - Milestone 2
 Present:
-- Matt Gubler
-- Kevin Pett
-- Michael Short
-- Aidan Dougherty
+- Matt Gubler (Project Manager)
+- Kevin Pett (Recorder)
+- Michael Short (Scrum Master)
+- Aidan Dougherty (Programmer/Tester)
 
 Minutes:
 11:20am - 11:40: Discussion on what this meeting needs to accomplish
 11:40 - 12:05pm: Sprint planning, task assigning
 12:05 - 12:15: Deadline setting, logistics planning for future meetings
 12:15 - 12:30: Preliminary coding and merging of project's code
+
+Action items:
+Matt: Create/update SRS Document and sequence UML. Work on task.py.
+Kevin: Write test cases and test documentation. Work on task.py.
+Michael: Organize repo directories, organize tasks on zenhub. Work on task_list.py
+Adian: Work on task_list.py and main.py. Make Class UML diagram.
