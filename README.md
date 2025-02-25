@@ -17,6 +17,12 @@ https://github.com/MikeShort11/TaskManager
 - Project Management: Zenhub
 - Communication: Discord
 
+### Milestone 3 Roles:
+- Matt Gubler - Programmer
+- Kevin Pett - Scrum Master
+- Michael Short - Recorder
+- Aidan Dougherty - Product Owner
+
 ### Milestone 1-2 Roles:
 - Matt Gubler - Product Owner
 - Kevin Pett - Recorder
