@@ -3,7 +3,21 @@ from task import Task
 
 class TaskList:
     def __init__(self, json_name = None):
-        """Constructs an object containing a dictionary of task object."""
+        """Constructs an object containing a dictionary of task object.
+        Checks for the json title type, json extension, and its existence."""
+        try:
+            assert isinstance(json_name, str) or json_name is None  # Check input type
+        except AssertionError:
+            raise TypeError("Not a String or NoneType.")
+        if json_name is not None:
+            try:
+                assert json_name.endswith(".json")  # Check file extension
+            except AssertionError:
+                raise AttributeError("Incorrect extension. Must be '.json'.")
+            try:
+                self._load_tasks(json_name)
+            except FileNotFoundError as err:
+                raise FileNotFoundError(err)
         self.list: dict = {}
         self.size: int = 0
         self.json: str | None = json_name
