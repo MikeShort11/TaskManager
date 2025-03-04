@@ -18,11 +18,11 @@ class TaskList:
                 self._load_tasks(json_name)
             except FileNotFoundError as err:
                 raise FileNotFoundError(err)
+               
+        """Constructs an object containing a dictionary of task object."""
+
         self.list: dict = {}
         self.size: int = 0
-        self.json: str | None = json_name
-        if json_name:
-            self._load_tasks(json_name)
 
     def add_task(self, title):
         """Uses the Task class to create a task object and

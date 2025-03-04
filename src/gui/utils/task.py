@@ -18,7 +18,6 @@ class Task:
             self.time = time
             self.description = description
             self.category = category
-
         #maybe we need this later
     def to_dict(self):
         """Converts task to a dictionary for JSON"""
