@@ -4,6 +4,15 @@ from task import Task
 class TaskList:
     def __init__(self, json_name = None):
         """Constructs an object containing a dictionary of task object."""
+        try:
+            assert isinstance(json_name, str) or json_name is None  # Check input type
+        except AssertionError:
+            raise TypeError("")
+        try:
+            if json_name is not None:
+                assert json_name.endswith(".json")  # Check file extension
+        except AssertionError:
+            raise AttributeError("Incorrect extension")
         self.list: dict = {}
         self.size: int = 0
         self.json: str | None = json_name
@@ -14,20 +23,26 @@ class TaskList:
         """Uses the Task class to create a task object and
         adds it to the task_list dictionary.
         Automatically calls _save_tasks if needed."""
-        if title in self.list:
-            return f"'{title}' is taken, try another name."
-        prev_size = self.size
-        self.list[title] = Task(title)
-        self._get_size()
-        if self.json and self.size != prev_size:
-            self._save_tasks(self.json)
-        return f"{title} task added successfully."
+        try:
+            assert isinstance(title, str)
+        except AssertionError as err:
+            raise TypeError(err)
+        else:
+            if title in self.list:
+                return f"'{title}' is taken, try another name."
+            prev_size = self.size
+            self.list[title] = Task(title)
+            self._get_size()
+            if self.json and self.size != prev_size:
+                self._save_tasks(self.json)
+            return f"{title} task added successfully."
 
 
     def delete_task(self, title):
         """Deletes a specified task from the task_list dictionary.
         Automatically calls _save_tasks if needed."""
         try:
+            assert isinstance(title, str)
             prev_size = self.size
             del self.list[title]
             self._get_size()
@@ -35,6 +50,8 @@ class TaskList:
                 self._save_tasks(self.json)
         except KeyError:
             return "Key not found!"
+        except AssertionError as err:
+            raise TypeError(err)
         else:
             return f"{title} deleted."
 

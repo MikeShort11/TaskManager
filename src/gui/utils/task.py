@@ -4,12 +4,20 @@ import json
 class Task:
     def __init__(self, title: str, date = "no date", time = "no time", description: str = "enter description here", category: str = "no category"):
         """Constructs a new task object with the following data"""
-        self.title = title
-        self.date = date
-        self.time = time
-        self.description = description
-        self.category = category
-
+        try:
+            assert isinstance(title, str)
+            assert isinstance(date, str)  # Change obj type to datetime later
+            assert isinstance(time, str)  # Change obj type to datetime later
+            assert isinstance(description, str)
+            assert isinstance(category, str)
+        except AssertionError as err:
+            raise TypeError(err)  # Code calling the constructor needs error handling
+        else:
+            self.title = title
+            self.date = date
+            self.time = time
+            self.description = description
+            self.category = category
         #maybe we need this later
     def to_dict(self):
         """Converts task to a dictionary for JSON"""
