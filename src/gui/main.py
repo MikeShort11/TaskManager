@@ -18,6 +18,7 @@ class TopLabel(BoxLayout):
         self.size_hint_y=0.1 #size_hint allows for flexibility
         self.top_label = Label(text="Super Cool Task Manager")
         self.add_btn = Button(text='add_task', size_hint_x=0.1)
+        self.add_btn.bind(on_press=add_task)
         self.add_widget(self.top_label)
         self.add_widget(self.add_btn)
 
@@ -65,6 +66,9 @@ def expand_and_collapse(instance):
     edit_btn = Button(text='edit', size_hint_x=0.1)
     delete_btn = Button(text='delete', size_hint_x=0.1)
 
+    edit_btn.bind(on_press=edit_task)
+    delete_btn.bind(on_press=delete_task)
+
     detail_holder = BoxLayout(orientation = 'horizontal', size_hint_y=0.5) #needed for formatting reasons
 
     #checks if the task is already expanded
@@ -83,6 +87,14 @@ def expand_and_collapse(instance):
         task_holder.add_widget(detail_holder)
         instance.text="collapse" #change text
 
+def add_task(instance):
+    print("add_task called")
+
+def edit_task(instance):
+    print("edit called")
+
+def delete_task(instance):
+    print("delete called")
 
 if __name__ == '__main__':
     MainApp().run()

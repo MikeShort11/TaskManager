@@ -20,14 +20,14 @@ class TaskList:
                 raise FileNotFoundError(err)
                
 
-    def add_task(self, title):
+    def add_task(self, title, date:str="", time:str="", desc:str="", cat:str=""):
         """Uses the Task class to create a task object and
         adds it to the task_list dictionary.
         Automatically calls _save_tasks if needed."""
         if title in self.list:
             return f"'{title}' is taken, try another name."
         prev_size = self.size
-        self.list[title] = Task(title)
+        self.list[title] = Task(title, date, time, desc, cat)
         self._get_size()
         if self.json and self.size != prev_size:
             self._save_tasks(self.json)
