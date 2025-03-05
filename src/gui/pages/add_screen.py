@@ -16,7 +16,7 @@ Config.set('graphics', 'height', '465')
 
 from kivy.uix.textinput import TextInput
 
-text_field_headings = ["Title", "Category", "Date", "Time", "Description"]
+text_field_headings = ["Title", "Category", "Date", "Time", "Description"] #names of text fields
 
 
 class TopLabel(BoxLayout):
@@ -27,6 +27,7 @@ class TopLabel(BoxLayout):
         self.add_widget(self.top_label)
 
 class TaskFields(FloatLayout):
+    """The composition of text fields and their titles"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         # self.size = (360, 300)
@@ -50,6 +51,7 @@ class TaskFields(FloatLayout):
 
 
 class MainApp(App):
+    """The main add_screen window"""
     def build(self):
         root = FloatLayout()
 
