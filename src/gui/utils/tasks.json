@@ -19,5 +19,49 @@
         "time": "6:00 PM",
         "description": "a third task that i want to add",
         "category": "school"
+    },
+    {
+        "title": "task4",
+        "date": "10/21/2003",
+        "time": "2:30 PM",
+        "description": "A task to fill space",
+        "category": "none"
+    },
+    {
+        "title": "task5",
+        "date": "2/11/2023",
+        "time": "4:00 AM",
+        "description": "another task to add",
+        "category": "none"
+    },
+    {
+        "title": "task6",
+        "date": "4/28/2020",
+        "time": "6:00 PM",
+        "description": "a third task that i want to add",
+        "category": "school"
+    },
+    {
+        "title": "task7",
+        "date": "10/21/2003",
+        "time": "2:30 PM",
+        "description": "A task to fill space",
+        "category": "none"
+    },
+    {
+        "title": "task8",
+        "date": "2/11/2023",
+        "time": "4:00 AM",
+        "description": "another task to add",
+        "category": "none"
+    },
+    {
+        "title": "task9",
+        "date": "4/28/2020",
+        "time": "6:00 PM",
+        "description": "a third task that i want to add",
+        "category": "school"
     }
+
+
 ]
