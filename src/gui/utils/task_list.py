@@ -5,6 +5,7 @@ class TaskList:
     def __init__(self, json_name = None):
         """Constructs an object containing a dictionary of task object.
         Checks for the json title type, json extension, and its existence."""
+        self.size = 0
         try:
             assert isinstance(json_name, str) or json_name is None  # Check input type
         except AssertionError:

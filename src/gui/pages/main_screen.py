@@ -99,16 +99,18 @@ def expand_and_collapse(instance):
         instance.text="collapse" #change text
 
 def add_task(instance):
-    App.get_running_app().set_return("add")
+    task = instance.parent.parent.children[1].children[1].text
+    App.get_running_app().set_return(("add", task))
     App.get_running_app().stop()
 
 def edit_task(instance):
-    App.get_running_app().set_return("edit")
+    task = instance.parent.parent.children[1].children[1].text
+    App.get_running_app().set_return(("edit", task))
     App.get_running_app().stop()
 
 def delete_task(instance):
-    task = instance.parent.parent.children[0]
-    App.get_running_app().set_return("delete")
+    task = instance.parent.parent.children[1].children[1].text
+    App.get_running_app().set_return(("delete", task))
     App.get_running_app().stop()
 
 if __name__ == '__main__':
