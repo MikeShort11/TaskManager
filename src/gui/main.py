@@ -1,8 +1,5 @@
-import sys
-from utils import task, task_list
-from task import Task
-from task_list import TaskList
-from kivy.app import App, Builder
+from utils.task_list import TaskList
+from kivy.app import App
 #layout imports
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
@@ -12,20 +9,7 @@ from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
 
 
-#some temporary text for testing the layouts
-#temp_list = ["hello", "world"]
-#temp_list = ["hello", "world", "text", "to", "fill", "space"]
-temp_list = ["hello", "world", "text", "to", "fill", "space", "even", "more", "txt", "hello", "world", "text", "to", "fill", "space", "even", "more", "txt"]
-extened_temp_list = [('hello', 'world', 'text'), ('world', 'text', 'to'), ('text', 'to', 'fill'),
-('to', 'fill', 'space'), ('fill', 'space', 'even'), ('space', 'even', 'more'),
-('even', 'more', 'txt'), ('more', 'txt', 'hello'), ('txt', 'hello', 'world'),
-('hello', 'world', 'text'), ('world', 'text', 'to'), ('text', 'to', 'fill'),
-('to', 'fill', 'space'), ('fill', 'space', 'even'), ('space', 'even', 'more'),
-('even', 'more', 'txt'), ('more', 'txt', 'hello'), ('txt', 'hello', 'world')]
-
-#TODO: TEMP COMMENT THIS IS WHERE CODE STARTS
-
-global_task_manager = TaskList('../utils/tasks.json')
+global_task_manager = TaskList('utils/tasks.json')
 
 class TopLabel(BoxLayout):
     """the Label at the top of the page"""
