@@ -1,5 +1,5 @@
 import json
-from task import Task
+from utils.task import Task
 
 class TaskList:
     def __init__(self, json_name = None):
