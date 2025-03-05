@@ -19,10 +19,6 @@ class TaskList:
             except FileNotFoundError as err:
                 raise FileNotFoundError(err)
                
-        """Constructs an object containing a dictionary of task object."""
-
-        self.list: dict = {}
-        self.size: int = 0
 
     def add_task(self, title):
         """Uses the Task class to create a task object and

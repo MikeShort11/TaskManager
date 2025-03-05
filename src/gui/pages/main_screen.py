@@ -1,3 +1,7 @@
+import sys
+sys.path.append('../utils')
+from task import Task
+from task_list import TaskList
 from kivy.app import App, Builder
 #layout imports
 from kivy.uix.boxlayout import BoxLayout
@@ -19,7 +23,9 @@ extened_temp_list = [('hello', 'world', 'text'), ('world', 'text', 'to'), ('text
 ('to', 'fill', 'space'), ('fill', 'space', 'even'), ('space', 'even', 'more'),
 ('even', 'more', 'txt'), ('more', 'txt', 'hello'), ('txt', 'hello', 'world')]
 
+#TODO: TEMP COMMENT THIS IS WHERE CODE STARTS
 
+global_task_manager = TaskList('../utils/tasks.json')
 
 class TopLabel(BoxLayout):
     """the Label at the top of the page"""
@@ -38,7 +44,7 @@ class ListDisplay(ScrollView):
         list_of_tasks.bind(minimum_height=list_of_tasks.setter('height'))  # Ensure list_of tasks resizes with nubmer of tasks
 
         #loop through the data to get the labels for the tasks  TODO: replace temp_list
-        for i in temp_list:
+        for i in global_task_manager:
             task_holder = BoxLayout(orientation='vertical', size_hint_y=None, size=(100, 75)) #also where the additional details will go
             task = BoxLayout(orientation='horizontal', size_hint_y=None, size=(100, 75)) #holds the name of the task and the button to expand
             lbl = Label(text=i) #the text for the task
@@ -78,12 +84,8 @@ def expand_and_collapse(instance):
         instance.text="expand" #change text
 
     else:
-        #TODO: get details from correct task
-        details = " "
-        details += f"Title: {extened_temp_list[0][0]}\n"
-        details += f"Date: {extened_temp_list[0][1]}\n"
-        details += f"Catergory: {extened_temp_list[0][2]}\n"
-        details += f"description: a long sting of text to fill some space with"
+        #TODO: format the details
+        details = str(global_task_manager.list[instance.parent.children[1].text])
         #add new widgets
         detail_holder.add_widget(Label(text=details))
         task_holder.add_widget(detail_holder)
