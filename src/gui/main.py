@@ -17,7 +17,10 @@ class TopLabel(BoxLayout):
         super().__init__(**kwargs)
         self.size_hint_y=0.1 #size_hint allows for flexibility
         self.top_label = Label(text="Super Cool Task Manager")
+        self.add_btn = Button(text='add_task', size_hint_x=0.1)
         self.add_widget(self.top_label)
+        self.add_widget(self.add_btn)
+
 
 class ListDisplay(ScrollView):
     #the scroll view holds the layouts so they can expand past the screen and be scrolled
@@ -59,7 +62,10 @@ def expand_and_collapse(instance):
     task_holder = instance.parent.parent
     #resize the holder to move the other tasks down
     task_holder.height=150
-    detail_holder = BoxLayout(orientation = 'vertical', size_hint_y=0.5) #needed for formatting reasons
+    edit_btn = Button(text='edit', size_hint_x=0.1)
+    delete_btn = Button(text='delete', size_hint_x=0.1)
+
+    detail_holder = BoxLayout(orientation = 'horizontal', size_hint_y=0.5) #needed for formatting reasons
 
     #checks if the task is already expanded
     if len(task_holder.children) > 1:
@@ -72,6 +78,8 @@ def expand_and_collapse(instance):
         details = str(global_task_manager.list[instance.parent.children[1].text])
         #add new widgets
         detail_holder.add_widget(Label(text=details))
+        detail_holder.add_widget(edit_btn)
+        detail_holder.add_widget(delete_btn)
         task_holder.add_widget(detail_holder)
         instance.text="collapse" #change text
 
