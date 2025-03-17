@@ -52,6 +52,11 @@ class TaskFields(FloatLayout):
 
 class MainApp(App):
     """The main add_screen window"""
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.return_dict = {"Title": '', "Date": '', "Time": '', "Category": '',
+                            "Description": ''}
+
     def build(self):
         root = FloatLayout()
 
@@ -63,10 +68,27 @@ class MainApp(App):
 
         accept_button = Button(pos=(297, 135), size=(40,40), size_hint=(None, None), text="Accept")
         discard_button = Button(pos=(297, 65), size=(40, 40), size_hint=(None, None), text="Discard")
+        accept_button.bind(on_press = App.get_running_app().accept)
+        discard_button.bind(on_press = App.get_running_app().stop)
         root.add_widget(accept_button)
         root.add_widget(discard_button)
 
         return root
+
+    def run(self):
+        super(MainApp, self).run()
+        return self.return_dict
+
+    def accept(self, instance):
+        """This function sets the add_screen's return dictionary keys to
+        each of the contents of the text fields.
+        instance.parent.children[2].children[1].text == "Description"
+        instance.parent.children[2].children[3].text == "Time", etc"""
+        for i in range(1, 10, 2):
+            key = instance.parent.children[2].children[i].text
+            key_return_text = instance.parent.children[2].children[i - 1].text
+            App.get_running_app().return_dict[key] = key_return_text
+        App.get_running_app().stop()
 
 if __name__ == '__main__':
     MainApp().run()
