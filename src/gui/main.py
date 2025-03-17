@@ -8,11 +8,13 @@ from utils.task_list import TaskList
 task_manager = TaskList('utils/tasks.json')
 
 def add(task_manager_list):
-    to_add = add_screen.MainApp().run()
-    
+    add_dict = add_screen.MainApp().run()
+    task_manager_list.add_task(add_dict["Title"], add_dict["Date"],
+                               add_dict["Time"], add_dict["Category"],
+                               add_dict["Description"])
 
 def delete(task_manager_list, title):
-    #TODO: fix delete so it accutally deletes
+    #TODO: fix delete so it actually deletes
     task_manager_list.delete_task(title)
 
 def edit(task_manager_list):
