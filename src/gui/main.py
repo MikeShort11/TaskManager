@@ -9,27 +9,32 @@ task_manager = TaskList('utils/tasks.json')
 
 def add(task_manager_list):
     add_dict = add_screen.MainApp().run()
-    task_manager_list.add_task(add_dict["Title"], add_dict["Date"],
-                               add_dict["Time"], add_dict["Category"],
-                               add_dict["Description"])
+    task_manager_list.add_task(add_dict["title"], add_dict["date"],
+                               add_dict["time"], add_dict["category"],
+                               add_dict["description"])
 
 
 def delete(task_manager_list, title):
-    #TODO: fix delete so it actually deletes
     task_manager_list.delete_task(title)
 
-def edit(task_manager_list):
-    #TODO: allow for editin and deletin
-    edit_screen.MainApp().run()
+def edit(task_manager_list, title):
+    add_dict = edit_screen.MainApp().run()
+    for key in add_dict:
+        if add_dict[key] == "":
+            add_dict[key] = task_manager_list.list[title].to_dict[key]
+    task_manager_list.delete_task(title)
+    task_manager_list.add_task(add_dict["title"], add_dict["date"],
+                               add_dict["time"], add_dict["category"],
+                               add_dict["description"])
 
 def main():
     keep_running = True
     while keep_running == True:
         first_in = main_screen.MainApp().run()
-        print(first_in)
+        print(first_in[1])
         command_dict = {"add": lambda: add(task_manager),
-                        "delete": lambda: delete(task_manager, first_in),
-                        "edit": lambda: edit(task_manager),
+                        "delete": lambda: delete(task_manager, first_in[1]),
+                        "edit": lambda: edit(task_manager, first_in[1]),
                         }
 
         # keep_running = False
@@ -39,6 +44,7 @@ def main():
                 keep_running = False
             else:
                 command_dict[first_in[0]]()
+                print(first_in[0])
 
         except:
             print("error with first_in")

@@ -16,7 +16,7 @@ Config.set('graphics', 'height', '465')
 
 from kivy.uix.textinput import TextInput
 
-text_field_headings = ["Title", "Category", "Date", "Time", "Description"] #names of text fields
+text_field_headings = ["title", "category", "date", "time", "description"] #names of text fields
 
 
 class TopLabel(BoxLayout):
@@ -34,14 +34,14 @@ class TaskFields(FloatLayout):
         y_pos = 150
 
         for i in text_field_headings:
-            if i == "Description":
+            if i == "description":
                 label = Label(text=i, pos=(-141, y_pos))
-            elif i == "Category":
+            elif i == "category":
                 label = Label(text=i, pos=(-149, y_pos))
             else:
                 label = Label(text=i, pos=(-164, y_pos))
             y_pos -= 33
-            if i == "Description":
+            if i == "description":
                 text_input = TextInput(pos=(18, y_pos + 185), size=(220, 60), size_hint=(None, None))
             else:
                 text_input = TextInput(pos=(18, y_pos + 230), multiline=False, size=(220, 23), size_hint=(None, None), font_size=10)
@@ -54,8 +54,8 @@ class MainApp(App):
     """The main add_screen window"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.return_dict = {"Title": '', "Date": '', "Time": '', "Category": '',
-                            "Description": ''}
+        self.return_dict = {"title": '', "date": '', "time": '', "category": '',
+                            "description": ''}
 
     def build(self):
         root = FloatLayout()
