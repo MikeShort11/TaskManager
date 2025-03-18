@@ -43,10 +43,10 @@ class TaskFields(FloatLayout):
             y_pos -= 33
             if i == "description":
                 text_input = TextInput(pos=(18, y_pos + 185), size=(220, 60),
-                                       size_hint=(None, None))
+                                       size_hint=(None, None), text="")
             else:
                 text_input = TextInput(pos=(18, y_pos + 230), multiline=False, size=(220, 23), size_hint=(None, None),
-                                       font_size=10,)
+                                       font_size=10, text="")
             y_pos -= 30
             self.add_widget(label)
             self.add_widget(text_input)

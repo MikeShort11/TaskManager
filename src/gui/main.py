@@ -21,7 +21,7 @@ def edit(task_manager_list, title):
     add_dict = edit_screen.MainApp().run()
     for key in add_dict:
         if add_dict[key] == "":
-            add_dict[key] = task_manager_list.list[title].to_dict[key]
+            add_dict[key] = task_manager_list.list[title].to_dict()[key]
     task_manager_list.delete_task(title)
     task_manager_list.add_task(add_dict["title"], add_dict["date"],
                                add_dict["time"], add_dict["category"],
