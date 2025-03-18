@@ -1,10 +1,11 @@
 import json
-from task import Task
+from src.gui.utils.task import Task
 
 class TaskList:
     def __init__(self, json_name = None):
         """Constructs an object containing a dictionary of task object.
         Checks for the json title type, json extension, and its existence."""
+        self.size = 0
         try:
             assert isinstance(json_name, str) or json_name is None  # Check input type
         except AssertionError:
@@ -16,22 +17,19 @@ class TaskList:
                 raise AttributeError("Incorrect extension. Must be '.json'.")
             try:
                 self._load_tasks(json_name)
+                self.json = json_name
             except FileNotFoundError as err:
                 raise FileNotFoundError(err)
                
-        """Constructs an object containing a dictionary of task object."""
 
-        self.list: dict = {}
-        self.size: int = 0
-
-    def add_task(self, title):
+    def add_task(self, title, date:str="", time:str="", desc:str="", cat:str=""):
         """Uses the Task class to create a task object and
         adds it to the task_list dictionary.
         Automatically calls _save_tasks if needed."""
         if title in self.list:
             return f"'{title}' is taken, try another name."
         prev_size = self.size
-        self.list[title] = Task(title)
+        self.list[title] = Task(title, date, time, desc, cat)
         self._get_size()
         if self.json and self.size != prev_size:
             self._save_tasks(self.json)
