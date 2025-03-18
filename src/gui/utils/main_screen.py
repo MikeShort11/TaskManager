@@ -1,3 +1,5 @@
+from pathlib import Path
+import json
 from src.gui.utils.task_list import TaskList
 from kivy.app import App
 #layout imports
@@ -8,6 +10,59 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
 
+
+class JsonLoader:
+    """
+    A class to load JSON data from a file in the 'utils' directory,
+    located one level above the module containing this class.
+    """
+
+    def __init__(self):
+        """Initialize the JsonLoader by determining the path to the JSON file."""
+        self.json_file_path = self._get_json_file_path()
+
+    @staticmethod
+    def _get_json_file_path():
+        """
+        Private method to locate the first JSON file in the 'utils' directory.
+
+        Returns:
+            Path: The path to the first JSON file.
+
+        Raises:
+            FileNotFoundError: If no JSON files are found in the 'utils' directory.
+        """
+        # Get the absolute path of the directory containing this module
+        module_dir = Path(__file__).resolve().parent
+
+        # Navigate one level up and into the 'utils' directory
+        utils_dir = module_dir.parent / 'utils'
+
+        # Find all files with a '.json' extension in the 'utils' directory
+        json_files = list(utils_dir.glob('*.json'))
+
+        if json_files:
+            # Return the first JSON file found
+            return json_files[0].name
+        else:
+            raise FileNotFoundError("No JSON files found in the 'utils' directory")
+
+    def load_json(self):
+        """
+        Load and return the JSON data from the file as a Python object.
+
+        Returns:
+            dict/list: The parsed JSON data (type depends on the JSON content).
+
+        Raises:
+            json.JSONDecodeError: If the file contains invalid JSON.
+            FileNotFoundError: If the file cannot be found at runtime.
+            IOError: If there’s an issue reading the file.
+        """
+        with self.json_file_path.open('r') as f:
+            return json.load(f)
+
+JSON_LOADER = JsonLoader()  # Returns a str
 JSON_NAME = TaskList(JSON_LOADER.json_file_path)
 
 class TopLabel(BoxLayout):
