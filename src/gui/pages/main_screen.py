@@ -9,7 +9,7 @@ from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
 
 
-global_task_manager = TaskList('C:/Users/gturt/PycharmProjects/TaskManager/src/gui/utils/tasks.json')
+global_task_manager = TaskList('tasks.json')
 
 class TopLabel(BoxLayout):
     """the Label at the top of the page"""

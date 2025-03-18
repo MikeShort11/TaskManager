@@ -1,11 +1,11 @@
-import pages.add_screen as add_screen
-import pages.main_screen as main_screen
-import pages.edit_screen as edit_screen
+import add_screen as add_screen
+import main_screen as main_screen
+import edit_screen as edit_screen
 
 
-from utils.task_list import TaskList
+from src.gui.utils.task_list import TaskList
 
-task_manager = TaskList('utils/tasks.json')
+task_manager = TaskList('tasks.json')
 
 def add(task_manager_list):
     add_dict = add_screen.MainApp().run()
