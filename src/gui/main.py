@@ -29,7 +29,7 @@ def edit(task_manager_list, title):
 
 def main():
     keep_running = True
-    while keep_running == True:
+    while keep_running:
         first_in = main_screen.MainApp().run()
         print(first_in[1])
         command_dict = {"add": lambda: add(task_manager),
@@ -45,7 +45,6 @@ def main():
             else:
                 command_dict[first_in[0]]()
                 print(first_in[0])
-
         except:
             print("error with first_in")
 

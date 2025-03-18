@@ -1,3 +1,5 @@
+from pathlib import Path
+import json
 from src.gui.utils.task_list import TaskList
 from kivy.app import App
 #layout imports
@@ -9,7 +11,59 @@ from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
 
 
-global_task_manager = TaskList('C:/Users/gturt/PycharmProjects/TaskManager/src/gui/utils/tasks.json')
+class JsonLoader:
+    """
+    A class to load JSON data from a file in the 'utils' directory,
+    located one level above the module containing this class.
+    """
+
+    def __init__(self):
+        """Initialize the JsonLoader by determining the path to the JSON file."""
+        self.json_file_path = self._get_json_file_path()
+
+    @staticmethod
+    def _get_json_file_path():
+        """
+        Private method to locate the first JSON file in the 'utils' directory.
+
+        Returns:
+            Path: The path to the first JSON file.
+
+        Raises:
+            FileNotFoundError: If no JSON files are found in the 'utils' directory.
+        """
+        # Get the absolute path of the directory containing this module
+        module_dir = Path(__file__).resolve().parent
+
+        # Navigate one level up and into the 'utils' directory
+        utils_dir = module_dir.parent / 'utils'
+
+        # Find all files with a '.json' extension in the 'utils' directory
+        json_files = list(utils_dir.glob('*.json'))
+
+        if json_files:
+            # Return the first JSON file found
+            return json_files[0].name
+        else:
+            raise FileNotFoundError("No JSON files found in the 'utils' directory")
+
+    def load_json(self):
+        """
+        Load and return the JSON data from the file as a Python object.
+
+        Returns:
+            dict/list: The parsed JSON data (type depends on the JSON content).
+
+        Raises:
+            json.JSONDecodeError: If the file contains invalid JSON.
+            FileNotFoundError: If the file cannot be found at runtime.
+            IOError: If there’s an issue reading the file.
+        """
+        with self.json_file_path.open('r') as f:
+            return json.load(f)
+
+JSON_LOADER = JsonLoader()  # Returns a str
+JSON_NAME = TaskList(JSON_LOADER.json_file_path)
 
 class TopLabel(BoxLayout):
     """the Label at the top of the page"""
@@ -29,10 +83,10 @@ class ListDisplay(ScrollView):
         super().__init__(**kwargs)
         #the list of tasks holds the task objects that will be displayed
         list_of_tasks = GridLayout(cols=1, size_hint_y=None)
-        list_of_tasks.bind(minimum_height=list_of_tasks.setter('height'))  # Ensure list_of tasks resizes with nubmer of tasks
+        list_of_tasks.bind(minimum_height=list_of_tasks.setter('height'))  # Ensure list_of tasks resizes with number of tasks
 
         #loop through the data to get the labels for the tasks  TODO: replace temp_list
-        for i in global_task_manager:
+        for i in JSON_NAME:
             task_holder = BoxLayout(orientation='vertical', size_hint_y=None, size=(100, 75)) #also where the additional details will go
             task = BoxLayout(orientation='horizontal', size_hint_y=None, size=(100, 75)) #holds the name of the task and the button to expand
             lbl = Label(text=i) #the text for the task
@@ -69,6 +123,8 @@ class MainApp(App):
     def set_return(self, input:str):
         self.return_value = input
 
+
+
 def expand_and_collapse(instance):
     #get the task holder from the button
     task_holder = instance.parent.parent
@@ -90,7 +146,7 @@ def expand_and_collapse(instance):
 
     else:
         #TODO: format the details
-        details = str(global_task_manager.list[instance.parent.children[1].text])
+        details = str(JSON_NAME.list[instance.parent.children[1].text])
         #add new widgets
         detail_holder.add_widget(Label(text=details))
         detail_holder.add_widget(edit_btn)
