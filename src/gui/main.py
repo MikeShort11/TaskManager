@@ -13,6 +13,7 @@ def add(task_manager_list):
                                add_dict["Time"], add_dict["Category"],
                                add_dict["Description"])
 
+
 def delete(task_manager_list, title):
     #TODO: fix delete so it actually deletes
     task_manager_list.delete_task(title)
@@ -38,7 +39,7 @@ def main():
                 keep_running = False
             else:
                 command_dict[first_in[0]]()
-                main_screen.MainApp().run()
+
         except:
             print("error with first_in")
 
