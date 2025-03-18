@@ -1,0 +1,51 @@
+[
+    {
+        "title": "task8",
+        "date": "2/11/2023",
+        "time": "4:00 AM",
+        "description": "another task to add",
+        "category": "none"
+    },
+    {
+        "title": "task9",
+        "date": "4/28/2020",
+        "time": "6:00 PM",
+        "description": "a third task that i want to add",
+        "category": "school"
+    },
+    {
+        "title": "Test Task2",
+        "date": "",
+        "time": "",
+        "description": "",
+        "category": ""
+    },
+    {
+        "title": "Test Task3",
+        "date": "",
+        "time": "",
+        "description": "",
+        "category": ""
+    },
+    {
+        "title": "Edited Task",
+        "date": "today",
+        "time": "now",
+        "description": "Changerd",
+        "category": "i succesfully changed it"
+    },
+    {
+        "title": "change",
+        "date": "today",
+        "time": "now",
+        "description": "edited",
+        "category": "a description"
+    },
+    {
+        "title": "task6",
+        "date": "4/28/2020",
+        "time": "6:00 PM",
+        "description": "school",
+        "category": "a third task that i want to add"
+    }
+]
