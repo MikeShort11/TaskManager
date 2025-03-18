@@ -61,7 +61,40 @@
         "time": "6:00 PM",
         "description": "a third task that i want to add",
         "category": "school"
+    },
+    {
+        "title": "Test Task",
+        "date": "",
+        "time": "",
+        "description": "",
+        "category": ""
+    },
+    {
+        "title": "Test Task2",
+        "date": "",
+        "time": "",
+        "description": "",
+        "category": ""
+    },
+    {
+        "title": "Test Task3",
+        "date": "",
+        "time": "",
+        "description": "",
+        "category": ""
+    },
+    {
+        "title": "tacos",
+        "date": "",
+        "time": "",
+        "description": "",
+        "category": ""
+    },
+    {
+        "title": "",
+        "date": "",
+        "time": "",
+        "description": "",
+        "category": ""
     }
-
-
 ]

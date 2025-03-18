@@ -22,18 +22,28 @@ def edit(task_manager_list):
     edit_screen.MainApp().run()
 
 def main():
-    while True:
+    keep_running = True
+    while keep_running == True:
         first_in = main_screen.MainApp().run()
         print(first_in)
         command_dict = {"add": lambda: add(task_manager),
                         "delete": lambda: delete(task_manager, first_in),
                         "edit": lambda: edit(task_manager),
-                        "quit": lambda: exit(),
                         }
+
+        # keep_running = False
+
         try:
-            command_dict[first_in[0]]()
+            if first_in == "none":
+                keep_running = False
+            else:
+                command_dict[first_in[0]]()
+                main_screen.MainApp().run()
         except:
             print("error with first_in")
+
+
+    main_screen.MainApp().stop()
 
 
 

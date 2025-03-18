@@ -1,5 +1,5 @@
 import json
-from utils.task import Task
+from src.gui.utils.task import Task
 
 class TaskList:
     def __init__(self, json_name = None):
@@ -17,6 +17,7 @@ class TaskList:
                 raise AttributeError("Incorrect extension. Must be '.json'.")
             try:
                 self._load_tasks(json_name)
+                self.json = json_name
             except FileNotFoundError as err:
                 raise FileNotFoundError(err)
                

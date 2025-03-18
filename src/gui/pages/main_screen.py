@@ -1,4 +1,4 @@
-from utils.task_list import TaskList
+from src.gui.utils.task_list import TaskList
 from kivy.app import App
 #layout imports
 from kivy.uix.boxlayout import BoxLayout
@@ -9,7 +9,7 @@ from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
 
 
-global_task_manager = TaskList('utils/tasks.json')
+global_task_manager = TaskList('C:/Users/gturt/PycharmProjects/TaskManager/src/gui/utils/tasks.json')
 
 class TopLabel(BoxLayout):
     """the Label at the top of the page"""
@@ -49,7 +49,7 @@ class ListDisplay(ScrollView):
 class MainApp(App):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.return_value = "hello"
+        self.return_value = "none"
 
     def build(self):
         root = BoxLayout(orientation="vertical")
