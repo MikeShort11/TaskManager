@@ -43,7 +43,13 @@ class MainScreen(BoxLayout):
     def refresh_task_list(self):
         self.task_display.clear_widgets()
         for task in self.task_list.tasks:
-            task_item = TaskItem(task, on_edit=self.edit_task, on_delete=self.delete_task)
+            task_item = TaskItem(
+                                 task,
+                                 on_edit=self.edit_task,
+                                 on_delete=self.delete_task,
+                                 size_hint_y=None,
+                                 size=(100,75)
+                                 )
             self.task_display.add_widget(task_item)
 
     def add_task(self, instance):
