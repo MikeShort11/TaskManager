@@ -23,7 +23,6 @@ class TaskItem(BoxLayout):
         top_half.add_widget(expand_button)
         self.add_widget(top_half)
 
-        #------------------------------------------------------
     def expand_and_collapse(self, instance):
         #get the task holder from the button
         task_item = instance.parent.parent
@@ -31,7 +30,7 @@ class TaskItem(BoxLayout):
         task_item.height=150
 
 
-        bottom_half = BoxLayout(orientation = 'horizontal', size_hint_y=0.5) #needed for formatting reasons
+        bottom_half = BoxLayout(orientation = 'horizontal', size_hint_y=0.5)
 
         #checks if the task is already expanded
         if len(task_item.children) > 1:
@@ -43,9 +42,6 @@ class TaskItem(BoxLayout):
             bottom_half.add_widget(Label(text="temp text"))
             task_item.add_widget(bottom_half)
             instance.text="collapse" #change text
-
-            #------------------------------------------------------
-
 
 class MainScreen(BoxLayout):
     def __init__(self, task_list, **kwargs):
