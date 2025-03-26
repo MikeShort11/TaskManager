@@ -19,36 +19,33 @@ class TaskItem(BoxLayout):
         delete_button = Button(text="Delete")
         delete_button.bind(on_press=lambda instance: on_delete(task))
         top_half.add_widget(delete_button)
-        expand_button = Button(on_press=expand_and_collapse)
+        expand_button = Button(on_press=self.expand_and_collapse, text='expand')
         top_half.add_widget(expand_button)
-
-        #------------------------------------------------------
-        def expand_and_collapse(instance):
-            #get the task holder from the button
-            task_item = instance.parent.parent
-            #resize the holder to move the other tasks down
-            task_item.height=150
-
-
-            bottom_half = BoxLayout(orientation = 'horizontal', size_hint_y=0.5) #needed for formatting reasons
-
-            #checks if the task is already expanded
-            if len(task_item.children) > 1:
-                task_item.remove_widget(task_holder.children[0])  # Remove old details
-                task_item.size = (100, 75)  # Reset size
-                instance.text="expand" #change text
-
-            else:
-                #TODO: format the details
-                details = str(global_task_manager.list[instance.parent.children[1].text])
-                #add new widgets
-                bottom_half.add_widget(Label(text=details))
-                task_item.add_widget(bottom_half)
-                instance.text="collapse" #change text
-
-        #------------------------------------------------------
-
         self.add_widget(top_half)
+
+        #------------------------------------------------------
+    def expand_and_collapse(self, instance):
+        #get the task holder from the button
+        task_item = instance.parent.parent
+        #resize the holder to move the other tasks down
+        task_item.height=150
+
+
+        bottom_half = BoxLayout(orientation = 'horizontal', size_hint_y=0.5) #needed for formatting reasons
+
+        #checks if the task is already expanded
+        if len(task_item.children) > 1:
+            task_item.remove_widget(task_item.children[0])  # Remove old details
+            task_item.size = (100, 75)  # Reset size
+            instance.text="expand" #change text
+
+        else:
+            bottom_half.add_widget(Label(text="temp text"))
+            task_item.add_widget(bottom_half)
+            instance.text="collapse" #change text
+
+            #------------------------------------------------------
+
 
 class MainScreen(BoxLayout):
     def __init__(self, task_list, **kwargs):
