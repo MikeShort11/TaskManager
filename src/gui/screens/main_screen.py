@@ -4,6 +4,15 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from .task_form_screen import TaskFormModal
 from ..utils.task import Task
+import functools
+
+def compare_by_category(task_one: Task, task_two: Task):
+    if task_one.category < task_two.category:
+        return -1
+    elif task_one.category > task_two.category:
+        return 1
+    else:
+        return 0
 
 class TaskItem(BoxLayout):
     def __init__(self, task, on_edit, on_delete, **kwargs):
@@ -61,6 +70,9 @@ class MainScreen(BoxLayout):
         add_button = Button(text="Add Task")
         add_button.bind(on_press=self.add_task)
         button_layout.add_widget(add_button)
+        sort_button = Button(text="Sort")
+        sort_button.bind(on_press=self.sort_tasks_button)
+        button_layout.add_widget(sort_button)
         self.add_widget(button_layout)
 
         # Populate task list
@@ -103,3 +115,8 @@ class MainScreen(BoxLayout):
                 setattr(existing_task, key, value)
             self.task_list.save_tasks()
             self.refresh_task_list()
+
+    def sort_tasks_button(self, instance):
+        key = functools.cmp_to_key(compare_by_category)
+        self.task_list.sort_tasks(key)
+        self.refresh_task_list()

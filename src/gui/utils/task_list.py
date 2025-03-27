@@ -21,10 +21,6 @@ class JsonManager:
         with open(self.file_path, 'w') as f:
             json.dump([task.to_dict() for task in self.tasks], f, indent=4)
 
-    def sort_tasks(self, key_func):
-        self.tasks.sort(key=key_func)
-        self.save_tasks()
-
 
 
 class TaskList:
@@ -49,3 +45,7 @@ class TaskList:
             if task.title == title:
                 return task
         return None
+
+    def sort_tasks(self, key_func):
+        self.tasks = sorted(self.tasks, key=key_func)
+        self.update_json()
