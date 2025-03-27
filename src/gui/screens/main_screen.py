@@ -7,9 +7,9 @@ from ..utils.task import Task
 import functools
 
 def compare_by_category(task_one: Task, task_two: Task):
-    if task_one.category < task_two.category:
+    if int(task_one.category) < int(task_two.category):
         return -1
-    elif task_one.category > task_two.category:
+    elif int(task_one.category) > int(task_two.category):
         return 1
     else:
         return 0
