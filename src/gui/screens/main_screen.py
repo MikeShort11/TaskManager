@@ -18,16 +18,14 @@ class TaskItem(BoxLayout):
     def __init__(self, task, on_edit, on_delete, **kwargs):
         super().__init__(**kwargs)
         self.orientation = 'vertical'
+        #store the task for later referance
+        self.task = task
+        self.on_delete = on_delete
+        self.on_edit = on_edit
 
         #make the top half of the layout
         top_half = BoxLayout(orientation='horizontal', size_hint_y=None, size=(100, 75))
         top_half.add_widget(Label(text=task.title))
-        edit_button = Button(text="Edit")
-        edit_button.bind(on_press=lambda instance: on_edit(task))
-        top_half.add_widget(edit_button)
-        delete_button = Button(text="Delete")
-        delete_button.bind(on_press=lambda instance: on_delete(task))
-        top_half.add_widget(delete_button)
         expand_button = Button(on_press=self.expand_and_collapse, text='expand')
         top_half.add_widget(expand_button)
         self.add_widget(top_half)
@@ -36,8 +34,15 @@ class TaskItem(BoxLayout):
         #get the task holder from the button
         task_item = instance.parent.parent
         #resize the holder to move the other tasks down
-        task_item.height=150
+        task_item.height=200
+        #get the task info for the description
+        task = task_item.task
 
+        text = f"""
+        Description: {task.description}
+        Date: {task.date}
+        Time: {task.time}
+        Catergory: {task.time}"""
 
         bottom_half = BoxLayout(orientation = 'horizontal', size_hint_y=0.5)
 
@@ -46,9 +51,19 @@ class TaskItem(BoxLayout):
             task_item.remove_widget(task_item.children[0])  # Remove old details
             task_item.size = (100, 75)  # Reset size
             instance.text="expand" #change text
-
+        #TODO: add some logic to put newlines into description
         else:
-            bottom_half.add_widget(Label(text="temp text"))
+            #add text and buttons to expanded info
+            bottom_half.add_widget(Label(text=text, halign='left', size_hint_x=None, size=(500, 100)))
+            #add edit button to expanded info
+            edit_button = Button(text="Edit", background_color='green')
+            edit_button.bind(on_press=lambda instance: self.on_edit(task))
+            bottom_half.add_widget(edit_button)
+            #add the delete button the the new menu
+            delete_button = Button(text="Delete", background_color='red')
+            delete_button.bind(on_press=lambda instance: self.on_delete(task))
+            bottom_half.add_widget(delete_button)
+            #add the expanded section and change button text
             task_item.add_widget(bottom_half)
             instance.text="collapse" #change text
 
