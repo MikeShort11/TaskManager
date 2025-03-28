@@ -27,3 +27,52 @@ class Task:
             description=data.get("description", ""),
             category=data.get("category", "")
         )
+
+
+    def __eq__(self, other):
+        # Equal comparison (self == other)
+        if self.category == other.category:
+            return True
+        else:
+            return False
+
+    def __ne__(self, other):
+        # Not equal comparison (self != other)
+        if self.category == other.category:
+            return False
+        else:
+            return True
+
+
+    def __lt__(self, other):
+        # Less than comparison (self < other)
+        if self.category < other.category:
+            return True
+        else:
+            return False
+
+
+    def __le__(self, other):
+        # Less than or equal comparison (self <= other)
+        if self.category <= other.category:
+            return True
+        else:
+            return False
+
+
+    def __gt__(self, other):
+        # Greater than comparison (self > other)
+        if self.category > other.category:
+            return True
+        else:
+            return False
+
+
+    def __ge__(self, other):
+        # Greater than or equal comparison (self >= other)
+        if self.category >= other.category:
+            return True
+        else:
+            return False
+
+

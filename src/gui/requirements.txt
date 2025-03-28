@@ -16,3 +16,4 @@ requests==2.32.3
 setuptools==75.8.0
 urllib3==2.3.0
 zope.interface==7.2
+kivy==2.3.1
