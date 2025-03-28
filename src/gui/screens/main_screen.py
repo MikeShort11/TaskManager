@@ -42,7 +42,7 @@ class TaskItem(BoxLayout):
         Description: {task.description}
         Date: {task.date}
         Time: {task.time}
-        Catergory: {task.time}"""
+        Catergory: {task.category}"""
 
         bottom_half = BoxLayout(orientation = 'horizontal', size_hint_y=0.5)
 
