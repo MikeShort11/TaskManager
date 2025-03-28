@@ -113,7 +113,7 @@ class MainScreen(BoxLayout):
         if existing_task:
             for key, value in task_data.items():
                 setattr(existing_task, key, value)
-            self.task_list.save_tasks()
+            self.task_list.update_json()
             self.refresh_task_list()
 
     def sort_tasks_button(self, instance):
