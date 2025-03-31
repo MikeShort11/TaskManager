@@ -14,7 +14,7 @@ class TaskFormModal(ModalView):
         layout = GridLayout(cols=2)
         self.inputs = {}
 
-        fields = ['title', 'date', 'time', 'description', 'category']
+        fields = ['title', 'date', 'time', 'description', 'priority']
         for field in fields:
             layout.add_widget(Label(text=field.capitalize() + ':'))
             if field == 'description':

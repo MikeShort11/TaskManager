@@ -48,4 +48,4 @@ class TaskList:
 
     def sort_tasks(self, key_func):
         self.tasks = sorted(self.tasks, key=key_func)
-        self.update_json()
+

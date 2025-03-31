@@ -6,10 +6,10 @@ from .task_form_screen import TaskFormModal
 from ..utils.task import Task
 import functools
 
-def compare_by_category(task_one: Task, task_two: Task):
-    if int(task_one.category) < int(task_two.category):
+def compare_by_priority(task_one: Task, task_two: Task):
+    if int(task_one.priority) < int(task_two.priority):
         return -1
-    elif int(task_one.category) > int(task_two.category):
+    elif int(task_one.priority) > int(task_two.priority):
         return 1
     else:
         return 0
@@ -42,7 +42,7 @@ class TaskItem(BoxLayout):
         Description: {task.description}
         Date: {task.date}
         Time: {task.time}
-        Catergory: {task.time}"""
+        Priority: {task.time}"""
 
         bottom_half = BoxLayout(orientation = 'horizontal', size_hint_y=0.5)
 
@@ -98,7 +98,7 @@ class MainScreen(BoxLayout):
     def refresh_task_list(self):
         self.task_display.clear_widgets()
         if self.is_sorted == True:
-            self.sort_by_category()
+            self.sort_by_priority()
         for task in self.task_list.tasks:
             task_item = TaskItem(
                                  task,
@@ -108,8 +108,6 @@ class MainScreen(BoxLayout):
                                  size=(100,75)
                                  )
             self.task_display.add_widget(task_item)
-        self.task_list.tasks = self.revert_list
-        self.task_list.update_json()
 
     def add_task(self, instance):
         form = TaskFormModal(on_save=self.save_new_task)
@@ -154,8 +152,8 @@ class MainScreen(BoxLayout):
                             setattr(existing_task, key, value)
             self.refresh_task_list()
 
-    def sort_by_category(self):
-        key = functools.cmp_to_key(compare_by_category)
+    def sort_by_priority(self):
+        key = functools.cmp_to_key(compare_by_priority)
         self.task_list.sort_tasks(key)
 
     def sort_tasks_button(self, instance):
@@ -166,7 +164,7 @@ class MainScreen(BoxLayout):
             # change the sort button to say "Revert"
             instance.text = "Revert"
             #sort the task list
-            self.sort_by_category()
+            self.sort_by_priority()
             self.refresh_task_list()
         elif self.is_sorted == True:
             # change the status of the task list to not sorted

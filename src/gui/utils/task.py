@@ -1,11 +1,11 @@
 class Task:
     """Initialize a Task with required title and optional attributes."""
-    def __init__(self, title, date="", time="", description="", category=""):
+    def __init__(self, title, date="", time="", description="", priority=""):
         self.title = title
         self.date = date
         self.time = time
         self.description = description
-        self.category = category
+        self.priority = priority
 
     def to_dict(self):
         """Convert the Task object to a dictionary for JSON serialization."""
@@ -14,7 +14,7 @@ class Task:
             "date": self.date,
             "time": self.time,
             "description": self.description,
-            "category": self.category
+            "priority": self.priority
         }
 
     @classmethod
@@ -25,20 +25,20 @@ class Task:
             date=data.get("date", ""),
             time=data.get("time", ""),
             description=data.get("description", ""),
-            category=data.get("category", "")
+            priority=data.get("priority", "")
         )
 
 
     def __eq__(self, other):
         # Equal comparison (self == other)
-        if self.category == other.category:
+        if self.priority == other.category:
             return True
         else:
             return False
 
     def __ne__(self, other):
         # Not equal comparison (self != other)
-        if self.category == other.category:
+        if self.priority == other.category:
             return False
         else:
             return True
@@ -46,7 +46,7 @@ class Task:
 
     def __lt__(self, other):
         # Less than comparison (self < other)
-        if self.category < other.category:
+        if self.priority < other.priority:
             return True
         else:
             return False
@@ -54,7 +54,7 @@ class Task:
 
     def __le__(self, other):
         # Less than or equal comparison (self <= other)
-        if self.category <= other.category:
+        if self.priority <= other.priority:
             return True
         else:
             return False
@@ -62,7 +62,7 @@ class Task:
 
     def __gt__(self, other):
         # Greater than comparison (self > other)
-        if self.category > other.category:
+        if self.priority > other.priority:
             return True
         else:
             return False
@@ -70,7 +70,7 @@ class Task:
 
     def __ge__(self, other):
         # Greater than or equal comparison (self >= other)
-        if self.category >= other.category:
+        if self.priority >= other.priority:
             return True
         else:
             return False
