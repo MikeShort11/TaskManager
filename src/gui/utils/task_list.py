@@ -24,7 +24,8 @@ class JsonManager:
 
 
 class TaskList:
-    def __init__(self, json_manager: JsonManager):
+    def __init__(self, title: str, json_manager: JsonManager):
+        self.title = title
         self.json_manager = json_manager
         self.tasks = json_manager.tasks
 
@@ -48,4 +49,19 @@ class TaskList:
 
     def sort_tasks(self, key_func):
         self.tasks = sorted(self.tasks, key=key_func)
+
+    def to_dict(self):
+        """Convert the TaskList object to a dictionary for JSON serialization."""
+        return {
+            "title": self.title,
+            "JSON": self.json_manager.file_path
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        """Create a TaskList object from a dictionary."""
+        return cls(
+            title=data["title"],
+            json_manager=data.get("JSON", ""),
+        )
 
