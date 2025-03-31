@@ -108,6 +108,8 @@ class MainScreen(BoxLayout):
                                  size=(100,75)
                                  )
             self.task_display.add_widget(task_item)
+        self.task_list.tasks = self.revert_list
+        self.task_list.update_json()
 
     def add_task(self, instance):
         form = TaskFormModal(on_save=self.save_new_task)
