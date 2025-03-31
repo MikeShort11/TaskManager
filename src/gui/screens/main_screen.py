@@ -72,6 +72,8 @@ class MainScreen(BoxLayout):
         super().__init__(**kwargs)
         self.orientation = 'vertical'
         self.task_list = task_list
+        self.is_sorted = False
+        self.revert_list = self.task_list.tasks.copy()
 
         # Task list display
         self.task_display = BoxLayout(orientation='vertical', size_hint_y=None)
@@ -95,6 +97,8 @@ class MainScreen(BoxLayout):
 
     def refresh_task_list(self):
         self.task_display.clear_widgets()
+        if self.is_sorted == True:
+            self.sort_by_category()
         for task in self.task_list.tasks:
             task_item = TaskItem(
                                  task,
@@ -115,11 +119,21 @@ class MainScreen(BoxLayout):
 
     def delete_task(self, task):
         self.task_list.delete_task(task.title)
+        if self.is_sorted == False:
+            self.revert_list = self.task_list.tasks.copy()
+        if self.is_sorted == True:
+            self.revert_list = [item for item in self.revert_list if item.title != task.title]
         self.refresh_task_list()
 
     def save_new_task(self, task_data):
         new_task = Task(**task_data)
         self.task_list.add_task(new_task)
+        if self.is_sorted == False:
+            self.revert_list = self.task_list.tasks.copy()
+            for i in range(len(self.revert_list)):
+                print(self.revert_list[i].title)
+        else:
+            self.revert_list.append(new_task)
         self.refresh_task_list()
 
     def save_edited_task(self, task_data):
@@ -129,9 +143,34 @@ class MainScreen(BoxLayout):
             for key, value in task_data.items():
                 setattr(existing_task, key, value)
             self.task_list.update_json()
+            if self.is_sorted == False:
+                self.revert_list = self.task_list.tasks.copy()
+            else:
+                for task in self.revert_List:
+                    if task.title == title:
+                        for key, value in task_data.items():
+                            setattr(existing_task, key, value)
             self.refresh_task_list()
 
-    def sort_tasks_button(self, instance):
+    def sort_by_category(self):
         key = functools.cmp_to_key(compare_by_category)
         self.task_list.sort_tasks(key)
-        self.refresh_task_list()
+
+    def sort_tasks_button(self, instance):
+        # check if the task list is sorted
+        if self.is_sorted == False:
+            # change the status of the task list to sorted
+            self.is_sorted = True
+            # change the sort button to say "Revert"
+            instance.text = "Revert"
+            #sort the task list
+            self.sort_by_category()
+            self.refresh_task_list()
+        elif self.is_sorted == True:
+            # change the status of the task list to not sorted
+            self.is_sorted = False
+            instance.text = "Sort"
+            #task list is already sorted. Revert to original sorting before sort was pressed
+            self.task_list.tasks = self.revert_list
+            self.refresh_task_list()
+
