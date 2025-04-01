@@ -3,17 +3,17 @@ from .task_list import TaskList
 
 
 class ListJsonManager:
-    def __init__(self, file_path: str):
-        self.file_path = 'masterlist.json'
+    def __init__(self, file_path):
+        self.file_path = file_path
         self.lists = self.load_lists()
 
     def load_lists(self):
         try:
             with open(self.file_path, 'r') as f:
-                tasks_data = json.load(f)
+                lists_data = json.load(f)
                 result = []
-                for task in tasks_data:
-                    result.append(TaskList.from_dict(task))
+                for list in lists_data:
+                    result.append(TaskList.from_dict(list))
                 return result
         except FileNotFoundError:
             return []
@@ -24,7 +24,7 @@ class ListJsonManager:
 
 
 class ListList:
-    def __init__(self, title: str, json_manager: ListJsonManager):
+    def __init__(self, json_manager: ListJsonManager):
         self.json_manager = json_manager
         self.lists = json_manager.lists
 
@@ -41,7 +41,7 @@ class ListList:
         self.update_json()
 
     def get_list(self, title):
-        for list in self.list:
+        for list in self.lists:
             if list.title == title:
                 return list
         return None

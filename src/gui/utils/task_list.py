@@ -62,6 +62,6 @@ class TaskList:
         """Create a TaskList object from a dictionary."""
         return cls(
             title=data["title"],
-            json_manager=data.get("JSON", ""),
+            json_manager=JsonManager(data["JSON"]),
         )
 
