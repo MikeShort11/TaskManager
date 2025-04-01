@@ -90,7 +90,7 @@ class MainScreen(BoxLayout):
         add_button = Button(text="Add Task")
         add_button.bind(on_press=self.add_task)
         button_layout.add_widget(add_button)
-        sort_button = Button(text="Sort")
+        sort_button = Button(text="Priority Sort")
         sort_button.bind(on_press=self.sort_tasks_button)
         button_layout.add_widget(sort_button)
         self.add_widget(button_layout)
@@ -165,14 +165,14 @@ class MainScreen(BoxLayout):
             # change the status of the task list to sorted
             self.is_sorted = True
             # change the sort button to say "Revert"
-            instance.text = "Revert"
+            instance.text = "'Time Created' Sort"
             #sort the task list
             self.sort_by_priority()
             self.refresh_task_list()
         elif self.is_sorted == True:
             # change the status of the task list to not sorted
             self.is_sorted = False
-            instance.text = "Sort"
+            instance.text = "Priority Sort"
             #task list is already sorted. Revert to original sorting before sort was pressed
             self.task_list.tasks = self.revert_list
             self.refresh_task_list()
