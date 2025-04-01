@@ -1,18 +1,3 @@
 [
-    {
-        "title": "dave",
-        "JSON": "errands.json"
-    },
-    {
-        "title": "peter",
-        "JSON": "groceries.json"
-    },
-    {
-        "title": "new title",
-        "JSON": "new title.json"
-    },
-    {
-        "title": "job",
-        "JSON": "job.json"
-    }
+
 ]
