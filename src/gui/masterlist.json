@@ -1,10 +1,18 @@
 [
     {
-        "title": "My Task List",
+        "title": "dave",
         "JSON": "errands.json"
     },
     {
-        "title": "groceries",
+        "title": "peter",
         "JSON": "groceries.json"
+    },
+    {
+        "title": "new title",
+        "JSON": "new title.json"
+    },
+    {
+        "title": "job",
+        "JSON": "job.json"
     }
 ]

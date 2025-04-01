@@ -42,7 +42,7 @@ class TaskItem(BoxLayout):
         Description: {task.description}
         Date: {task.date}
         Time: {task.time}
-        Priority: {task.time}"""
+        Priority: {task.priority}"""
 
         bottom_half = BoxLayout(orientation = 'horizontal', size_hint_y=0.5)
 
