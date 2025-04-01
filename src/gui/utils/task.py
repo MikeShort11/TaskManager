@@ -1,44 +1,78 @@
-
-import json
-
 class Task:
-    def __init__(self, title: str, date = "no date", time = "no time", description: str = "enter description here", category: str = "no category"):
-        """Constructs a new task object with the following data"""
-        try:
-            assert isinstance(title, str)
-            assert isinstance(date, str)  # Change obj type to datetime later
-            assert isinstance(time, str)  # Change obj type to datetime later
-            assert isinstance(description, str)
-            assert isinstance(category, str)
-        except AssertionError as err:
-            raise TypeError(err)  # Code calling the constructor needs error handling
-        else:
-            self.title = title
-            self.date = date
-            self.time = time
-            self.description = description
-            self.category = category
-        #maybe we need this later
+    """Initialize a Task with required title and optional attributes."""
+    def __init__(self, title, date="", time="", description="", priority=""):
+        self.title = title
+        self.date = date
+        self.time = time
+        self.description = description
+        self.priority = priority
+
     def to_dict(self):
-        """Converts task to a dictionary for JSON"""
-        return {"title": self.title,
-                "date": self.date,
-                "time": self.time,
-                "description": self.description,
-                "category": self.category
-            }
+        """Convert the Task object to a dictionary for JSON serialization."""
+        return {
+            "title": self.title,
+            "date": self.date,
+            "time": self.time,
+            "description": self.description,
+            "priority": self.priority
+        }
+
     @classmethod
     def from_dict(cls, data):
-        """creates a Tasks object from a dictionary"""
+        """Create a Task object from a dictionary."""
         return cls(
-            data["title"],
-            data["date"],
-            data["time"],
-            data["description"],
-            data["category"]
+            title=data["title"],
+            date=data.get("date", ""),
+            time=data.get("time", ""),
+            description=data.get("description", ""),
+            priority=data.get("priority", "")
         )
-    def __str__(self):
-        return f" {self.title}, {self.date}, {self.time}, {self.description}, {self.category}"
 
-"""task = Task("Meeting")
-print(task)"""
+
+    def __eq__(self, other):
+        # Equal comparison (self == other)
+        if self.priority == other.category:
+            return True
+        else:
+            return False
+
+    def __ne__(self, other):
+        # Not equal comparison (self != other)
+        if self.priority == other.category:
+            return False
+        else:
+            return True
+
+
+    def __lt__(self, other):
+        # Less than comparison (self < other)
+        if self.priority < other.priority:
+            return True
+        else:
+            return False
+
+
+    def __le__(self, other):
+        # Less than or equal comparison (self <= other)
+        if self.priority <= other.priority:
+            return True
+        else:
+            return False
+
+
+    def __gt__(self, other):
+        # Greater than comparison (self > other)
+        if self.priority > other.priority:
+            return True
+        else:
+            return False
+
+
+    def __ge__(self, other):
+        # Greater than or equal comparison (self >= other)
+        if self.priority >= other.priority:
+            return True
+        else:
+            return False
+
+
