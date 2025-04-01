@@ -124,10 +124,8 @@ class ListMainScreen(BoxLayout):
 
 
     def open_list(self, list):
-        class TaskListWindow(App):
-            def build(self):
-                return MainScreen(list)
-        TaskListWindow().run()
+        App.get_running_app().set_return(list)
+        App.get_running_app().stop()
 
 
 
