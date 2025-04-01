@@ -69,7 +69,9 @@ class ListMainScreen(BoxLayout):
         self.master_list = list_list
 
 
-        # Task list display
+        # List display
+        heading = Label(text="Lists:", font_size="40sp", size_hint_y=None, size_hint_x=.17)
+        self.add_widget(heading)
         self.list_display = BoxLayout(orientation='vertical', size_hint_y=None)
         self.list_display.bind(minimum_height=self.list_display.setter('height'))
         scroll_view = ScrollView()

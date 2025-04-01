@@ -76,7 +76,7 @@ class MainScreen(BoxLayout):
         self.revert_list = self.task_list.tasks.copy()
 
         # Task list display
-        heading = Label(text=task_list.title, halign='center')
+        heading = Label(text=task_list.title, font_size="40sp", size_hint_y=None)
         self.add_widget(heading)
         self.task_display = BoxLayout(orientation='vertical', size_hint_y=None)
         self.task_display.bind(minimum_height=self.task_display.setter('height'))
