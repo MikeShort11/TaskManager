@@ -8,7 +8,10 @@ from .list_form_screen import ListFormModal
 from .main_screen import MainScreen
 from ..utils.task_list import TaskList, JsonManager
 from ..utils.json_generator import JsonGenerator
+from ..utils.AI_caller import AICaller
+
 from kivy.app import App
+
 
 class ListItem(BoxLayout):
     def __init__(self, list, on_edit, on_delete, on_open, **kwargs):
@@ -79,10 +82,16 @@ class ListMainScreen(BoxLayout):
         self.add_widget(scroll_view)
 
         # Buttons
-        button_layout = BoxLayout(size_hint_y=None, height=50)
+        button_layout = BoxLayout(size_hint_y=None, height=50, orientation='horizontal')
         add_button = Button(text="NEW LIST")
         add_button.bind(on_press=self.add_list)
+
+        ai_button = Button(text='AI')
+        ai_button.bind(on_press=self._prompt_ai)
+
         button_layout.add_widget(add_button)
+        button_layout.add_widget(ai_button)
+
         self.add_widget(button_layout)
 
         # Populate task list
@@ -100,6 +109,12 @@ class ListMainScreen(BoxLayout):
                                  size=(100,75)
                                  )
             self.list_display.add_widget(list_item)
+
+    def _prompt_ai(self, instance):
+        text = AICaller.prompt_AI("make a daily todo list with work at 9 and some chores")
+        return text
+
+
 
     def add_list(self, instance):
         form = ListFormModal(on_save=self.save_new_list)
