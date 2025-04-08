@@ -1,3 +1,10 @@
 [
-
+    {
+        "title": "School",
+        "JSON": "School.json"
+    },
+    {
+        "title": "Play",
+        "JSON": "Work.json"
+    }
 ]
