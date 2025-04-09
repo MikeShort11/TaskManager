@@ -83,6 +83,8 @@ class ListMainScreen(BoxLayout):
         add_button = Button(text="NEW LIST")
         add_button.bind(on_press=self.add_list)
         button_layout.add_widget(add_button)
+        ai_button = Button(text="AI ASSISTANT")
+        button_layout.add_widget(ai_button)
         self.add_widget(button_layout)
 
         # Populate task list
