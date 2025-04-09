@@ -1,4 +1,5 @@
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.label import Label
 from kivy.uix.button import Button
@@ -18,7 +19,7 @@ class TaskItem(BoxLayout):
     def __init__(self, task, on_edit, on_delete, **kwargs):
         super().__init__(**kwargs)
         self.orientation = 'vertical'
-        #store the task for later referance
+        #store the task for later reference
         self.task = task
         self.on_delete = on_delete
         self.on_edit = on_edit

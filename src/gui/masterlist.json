@@ -1,10 +1,18 @@
 [
     {
-        "title": "School",
-        "JSON": "School.json"
+        "title": "LIST",
+        "JSON": "LIST.json"
     },
     {
-        "title": "Play",
-        "JSON": "Work.json"
+        "title": "taco",
+        "JSON": "taco.json"
+    },
+    {
+        "title": "hamb",
+        "JSON": "hamb.json"
+    },
+    {
+        "title": "new",
+        "JSON": "new.json"
     }
 ]
