@@ -111,7 +111,7 @@ class ListMainScreen(BoxLayout):
             self.list_display.add_widget(list_item)
 
     def _prompt_ai(self, instance):
-        text = AICaller.prompt_AI("make a daily todo list with work at 9 and some chores")
+        text = AICaller.make_AI_tasklist("make a daily todo list with work at 9 and some chores")
         return text
 
 

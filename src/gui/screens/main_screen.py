@@ -4,6 +4,7 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from .task_form_screen import TaskFormModal
 from ..utils.task import Task
+from ..utils.AI_caller import AICaller
 import functools
 
 def compare_by_priority(task_one: Task, task_two: Task):
@@ -93,6 +94,12 @@ class MainScreen(BoxLayout):
         sort_button = Button(text="Priority Sort")
         sort_button.bind(on_press=self.sort_tasks_button)
         button_layout.add_widget(sort_button)
+        # ai caller button
+        ai_button = Button(text="AI add task")
+        ai_button.bind(on_press=self.ai_add_task)
+        button_layout.add_widget(ai_button)
+
+
         self.add_widget(button_layout)
 
         # Populate task list
@@ -115,6 +122,10 @@ class MainScreen(BoxLayout):
     def add_task(self, instance):
         form = TaskFormModal(on_save=self.save_new_task)
         form.open()
+
+    def ai_add_task(self, instance) -> None:
+        AICaller.make_AI_task("I have a haircut at 2pm on the fifth")
+
 
     def edit_task(self, task):
         form = TaskFormModal(task, on_save=self.save_edited_task)

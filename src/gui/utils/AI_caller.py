@@ -14,7 +14,7 @@ class AICaller:
     """a class that will call gemini's API to make tasks and task_lists"""
 
     @staticmethod
-    def prompt_AI(input_prompt:str) -> str:
+    def make_AI_tasklist(input_prompt:str) -> str:
         """
         Gets a json output from google gemini to make a new task list
         input:
@@ -47,7 +47,7 @@ class AICaller:
         the current time is : {cur_time}
 
         user prompt:
-        {input_prompt[1]}
+        {input_prompt}
         """
 
         print("Waiting for AI response")
@@ -58,4 +58,46 @@ class AICaller:
 
         print(response.text)
         return response.text
+
+    @staticmethod
+    def make_AI_task(input_prompt:str) -> str:
+        """
+        Gets a json output from google gemini to make a new task
+        input:
+            input_prompt: the prompt from the user to base the task on
+        output:
+            a string containing the json for the task
+        """
+
+        cur_time = datetime.datetime.now()
+        prompt = f"""
+        You are an assistant that adds tasks to a users running list, which is in json
+        what you reply will be appended to the file holding the tasks
+        reply to the prompt with the needed task in this json schema but output it as text
+        (be very sure not to have ANY extra fromating):
+        {{
+            "title": "task1 title",
+            "date": "suggested date for the task",
+            "time": "suggested time for the task",
+            "description": "description for the task",
+            "priority": "integer (in a string) for priority 1=highest 5=lowest"
+        }},
+        
+        
+        the current time is : {cur_time}
+
+        user prompt:
+        {input_prompt}
+        """
+
+        print("Waiting for AI response")
+        response = client.models.generate_content(
+        model=model,
+        contents=prompt,)
+        print("Response recieved")
+
+        print(response.text)
+        return response.text
+
+
 
