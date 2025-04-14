@@ -1,5 +1,5 @@
 import unittest
-from src.gui.pages import add_screen
+from src.gui.screens import add_screen
 
 
 class TestAddScreen(unittest.TestCase):
