@@ -9,6 +9,7 @@ from .main_screen import MainScreen
 from ..utils.task_list import TaskList, JsonManager
 from ..utils.json_generator import JsonGenerator
 from ..utils.AI_caller import AICaller
+from .ai_form_screen import AIFormModal
 
 from kivy.app import App
 
@@ -111,14 +112,14 @@ class ListMainScreen(BoxLayout):
             self.list_display.add_widget(list_item)
 
     def _prompt_ai(self, instance):
-        text = AICaller.make_AI_tasklist("make a daily todo list with work at 9 and some chores")
-        return text
-
+        form = AIFormModal(on_save=self.save_ai_list)
+        form.open()
 
 
     def add_list(self, instance):
         form = ListFormModal(on_save=self.save_new_list)
         form.open()
+
 
     def edit_list(self, list, input):
         new_title = input
@@ -138,6 +139,16 @@ class ListMainScreen(BoxLayout):
         new_list = TaskList(new_title, new_json_manager)
         self.master_list.add_list(new_list)
         self.refresh_list()
+
+    def save_ai_list(self, ai_data):
+        ai_title = ai_data['Title']
+        ai_text = AICaller.make_AI_tasklist(ai_data['Prompt'])
+        new_file_path = JsonGenerator.string_to_json(self, title=ai_title, content=ai_text)
+        new_json_manager = JsonManager(new_file_path)
+        new_list = TaskList(ai_title, new_json_manager)
+        self.master_list.add_list(new_list)
+        self.refresh_list()
+
 
 
     def open_list(self, list):

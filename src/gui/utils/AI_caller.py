@@ -27,7 +27,7 @@ class AICaller:
         prompt = f"""
         You are an assistant that makes lists of task for a user to meet goals and track schedules
         reply to the prompt with the needed task list in this json schema but output it as text
-        (be very sure not to have ANY extra fromating):
+        (be very sure not to have ANY extra formating):
         [
         {{
             "title": "task1 title",
@@ -74,7 +74,7 @@ class AICaller:
         You are an assistant that adds tasks to a users running list, which is in json
         what you reply will be appended to the file holding the tasks
         reply to the prompt with the needed task in this json schema but output it as text
-        (be very sure not to have ANY extra fromating):
+        (be very sure not to have ANY extra formating):
         {{
             "title": "task1 title",
             "date": "suggested date for the task",
