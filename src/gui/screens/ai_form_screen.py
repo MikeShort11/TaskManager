@@ -24,10 +24,11 @@ class AIFormModal(ModalView):
         title_text_input = TextInput(multiline=False)
         if making_task == False:
             title_text_input.text = "Title of New List"
+            layout.add_widget((title_text_input))
+            self.inputs['Title'] = title_text_input
         else:
             title_text_input.text = "Title of New Task"
-        layout.add_widget((title_text_input))
-        self.inputs['Title'] = title_text_input
+
 
 
 

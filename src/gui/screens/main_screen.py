@@ -6,6 +6,7 @@ from .task_form_screen import TaskFormModal
 from ..utils.task import Task
 from ..utils.AI_caller import AICaller
 import functools
+from .ai_form_screen import AIFormModal
 
 def compare_by_priority(task_one: Task, task_two: Task):
     if int(task_one.priority) < int(task_two.priority):
@@ -124,7 +125,8 @@ class MainScreen(BoxLayout):
         form.open()
 
     def ai_add_task(self, instance) -> None:
-        AICaller.make_AI_task("I have a haircut at 2pm on the fifth")
+        form = AIFormModal(on_save=self.save_ai_task, making_task=True)
+        form.open()
 
 
     def edit_task(self, task):
@@ -165,6 +167,17 @@ class MainScreen(BoxLayout):
                         for key, value in task_data.items():
                             setattr(existing_task, key, value)
             self.refresh_task_list()
+
+    def save_ai_task(self, ai_data):
+        ai_task = AICaller.make_AI_task(ai_data['Prompt'])
+        self.task_list.json_manager.save_individual_string(ai_task)
+        if self.is_sorted == False:
+            self.revert_list = self.task_list.tasks.copy()
+            for i in range(len(self.revert_list)):
+                print(self.revert_list[i].title)
+        else:
+            self.revert_list.json_manager.save_individual_string(ai_task)
+        self.refresh_task_list()
 
     def sort_by_priority(self):
         key = functools.cmp_to_key(compare_by_priority)
