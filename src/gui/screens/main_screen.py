@@ -95,10 +95,6 @@ class MainScreen(BoxLayout):
         sort_button = Button(text="Priority Sort")
         sort_button.bind(on_press=self.sort_tasks_button)
         button_layout.add_widget(sort_button)
-        # ai caller button
-        ai_button = Button(text="AI add task")
-        ai_button.bind(on_press=self.ai_add_task)
-        button_layout.add_widget(ai_button)
 
 
         self.add_widget(button_layout)
@@ -122,10 +118,6 @@ class MainScreen(BoxLayout):
 
     def add_task(self, instance):
         form = TaskFormModal(on_save=self.save_new_task)
-        form.open()
-
-    def ai_add_task(self, instance) -> None:
-        form = AIFormModal(on_save=self.save_ai_task, making_task=True)
         form.open()
 
 
@@ -168,16 +160,6 @@ class MainScreen(BoxLayout):
                             setattr(existing_task, key, value)
             self.refresh_task_list()
 
-    def save_ai_task(self, ai_data):
-        ai_task = AICaller.make_AI_task(ai_data['Prompt'])
-        self.task_list.json_manager.save_individual_string(ai_task)
-        if self.is_sorted == False:
-            self.revert_list = self.task_list.tasks.copy()
-            for i in range(len(self.revert_list)):
-                print(self.revert_list[i].title)
-        else:
-            self.revert_list.json_manager.save_individual_string(ai_task)
-        self.refresh_task_list()
 
     def sort_by_priority(self):
         key = functools.cmp_to_key(compare_by_priority)

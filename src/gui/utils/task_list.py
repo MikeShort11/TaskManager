@@ -21,11 +21,6 @@ class JsonManager:
         with open(self.file_path, 'w') as f:
             json.dump([task.to_dict() for task in self.tasks], f, indent=4)
 
-    def save_individual_string(self, task_string):
-        with open(self.file_path, 'w') as f:
-            json.dump(task_string, f, indent=4)
-
-
 
 
 class TaskList:

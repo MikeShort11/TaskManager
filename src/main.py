@@ -10,7 +10,7 @@ class TaskManagerApp(App):
         self.return_task_list = None
 
     def build(self):
-        file_path = "gui/masterlist.json"
+        file_path = "masterlist.json"
         json_manager = ListJsonManager(file_path)
         master_list = ListList(json_manager)
         return ListMainScreen(master_list)

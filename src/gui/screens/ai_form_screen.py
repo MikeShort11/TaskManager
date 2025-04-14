@@ -6,7 +6,7 @@ from kivy.uix.button import Button
 from ..utils.task_list import TaskList
 
 class AIFormModal(ModalView):
-    def __init__(self, on_save=None, making_task=False, **kwargs):
+    def __init__(self, on_save=None, **kwargs):
         super().__init__(**kwargs)
         self.size_hint = (0.8, 0.8)
         self.auto_dismiss = False
@@ -22,12 +22,10 @@ class AIFormModal(ModalView):
         self.inputs['Prompt'] = prompt_text_input
 
         title_text_input = TextInput(multiline=False)
-        if making_task == False:
-            title_text_input.text = "Title of New List"
-            layout.add_widget((title_text_input))
-            self.inputs['Title'] = title_text_input
-        else:
-            title_text_input.text = "Title of New Task"
+        title_text_input.text = "Title of New List"
+        layout.add_widget((title_text_input))
+        self.inputs['Title'] = title_text_input
+
 
 
 
