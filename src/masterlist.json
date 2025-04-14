@@ -1,3 +1,10 @@
 [
-
+    {
+        "title": "Title of New List",
+        "JSON": "Title of New List.json"
+    },
+    {
+        "title": "Party TODO",
+        "JSON": "Party TODO.json"
+    }
 ]

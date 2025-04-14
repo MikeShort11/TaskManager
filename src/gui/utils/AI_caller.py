@@ -3,18 +3,27 @@ import datetime
 from dotenv import load_dotenv
 import os
 
-load_dotenv()  # Load environment variables from .env file
+class AICallerBase:
+    # Base class for AICaller to utilize singleton pattern
+    _instance = None
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
 
-API_KEY = os.getenv("API_KEY")
-
-model="gemini-2.0-flash"
-client = genai.Client(api_key=API_KEY)
-
-class AICaller:
+class AICaller(AICallerBase):
     """a class that will call gemini's API to make tasks and task_lists"""
+    _initialized = False
 
-    @staticmethod
-    def make_AI_tasklist(input_prompt:str) -> str:
+    def __init__(self):
+        if not AICaller._initialized:
+            load_dotenv()  # Load environment variables from .env file
+            self.__API_KEY = os.getenv("API_KEY")
+            self.client = genai.Client(api_key=self.__API_KEY)
+            self.model = "gemini-2.0-flash"
+            AICaller._initialized = True
+
+    def make_AI_tasklist(self, input_prompt: str) -> str:
         """
         Gets a json output from google gemini to make a new task list
         input:
@@ -51,16 +60,15 @@ class AICaller:
         """
 
         print("Waiting for AI response")
-        response = client.models.generate_content(
-        model=model,
-        contents=prompt,)
-        print("Response recieved")
+        response = self.client.models.generate_content(
+        model= self.model,
+        contents= prompt,)
+        print("Response received")
 
         print(response.text)
         return response.text
 
-    @staticmethod
-    def make_AI_task(input_prompt:str) -> str:
+    def make_AI_task(self, input_prompt: str) -> str:
         """
         Gets a json output from google gemini to make a new task
         input:
@@ -91,10 +99,10 @@ class AICaller:
         """
 
         print("Waiting for AI response")
-        response = client.models.generate_content(
-        model=model,
-        contents=prompt,)
-        print("Response recieved")
+        response = self.client.models.generate_content(
+        model= self.model,
+        contents= prompt,)
+        print("Response received")
 
         print(response.text)
         return response.text

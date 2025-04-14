@@ -142,7 +142,7 @@ class ListMainScreen(BoxLayout):
 
     def save_ai_list(self, ai_data):
         ai_title = ai_data['Title']
-        ai_text = AICaller.make_AI_tasklist(ai_data['Prompt'])
+        ai_text = AICaller().make_AI_tasklist(ai_data['Prompt'])
         new_file_path = JsonGenerator.string_to_json(self, title=ai_title, content=ai_text)
         new_json_manager = JsonManager(new_file_path)
         new_list = TaskList(ai_title, new_json_manager)
