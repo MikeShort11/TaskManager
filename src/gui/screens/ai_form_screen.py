@@ -1,3 +1,4 @@
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.modalview import ModalView
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
@@ -12,16 +13,17 @@ class AIFormModal(ModalView):
         self.auto_dismiss = False
         self.input = None
 
-        layout = GridLayout(cols=2)
+        layout = BoxLayout(orientation='vertical', size_hint_y=None, height=400, pos_hint=(None, None))
+        button_layout = BoxLayout(size_hint_y=None, height=80)
         self.inputs = {}
 
-        layout.add_widget(Label(text="What do you want to do?"))
+        layout.add_widget(Label(text="What do you want to do?", size_hint_y=None, height=100))
 
-        prompt_text_input = TextInput(multiline=True)
+        prompt_text_input = TextInput(multiline=True, size_hint_y=None, height=200)
         layout.add_widget(prompt_text_input)
         self.inputs['Prompt'] = prompt_text_input
 
-        title_text_input = TextInput(multiline=False)
+        title_text_input = TextInput(multiline=False, size_hint_y=None, height=40)
         title_text_input.text = "Title of New List"
         layout.add_widget((title_text_input))
         self.inputs['Title'] = title_text_input
@@ -32,11 +34,13 @@ class AIFormModal(ModalView):
 
         save_button = Button(text="Save")
         save_button.bind(on_press=self.save)
-        layout.add_widget(save_button)
+        button_layout.add_widget(save_button)
 
         cancel_button = Button(text="Cancel")
         cancel_button.bind(on_press=self.dismiss)
-        layout.add_widget(cancel_button)
+        button_layout.add_widget(cancel_button)
+
+        layout.add_widget(button_layout)
 
         self.add_widget(layout)
         self.on_save = on_save

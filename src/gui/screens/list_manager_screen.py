@@ -26,10 +26,12 @@ class ListItem(BoxLayout):
 
         #make the top half of the layout
         top_half = BoxLayout(orientation='horizontal', size_hint_y=None, size=(100, 75))
-        top_half.add_widget(Label(text=list.title))
-        expand_button = Button(on_press=self.expand_and_collapse, text='expand')
+        title_layout = BoxLayout(orientation='horizontal')
+        title_layout.add_widget(Label(text=list.title))
+        top_half.add_widget(title_layout)
+        expand_button = Button(on_press=self.expand_and_collapse, text='expand', size_hint=(None, None), size=(80,80))
         top_half.add_widget(expand_button)
-        open_button = Button(on_press=lambda instance: on_open(list), text='open')
+        open_button = Button(on_press=lambda instance: on_open(list), text='open', size_hint=(None, None), size=(80,80))
         top_half.add_widget(open_button)
         self.add_widget(top_half)
 
@@ -37,7 +39,7 @@ class ListItem(BoxLayout):
         #get the task holder from the button
         list_item = instance.parent.parent
         #resize the holder to move the other tasks down
-        list_item.height=200
+        list_item.height=160
         #get the task info for the description
         list = list_item.list
 
@@ -50,14 +52,14 @@ class ListItem(BoxLayout):
             instance.text="expand" #change text
 
         else:
-            text_input = TextInput(text="New List Title", halign='left', size_hint=(None, None), size=(500, 100))
+            text_input = TextInput(text="New List Title", halign='left', size_hint_y=None, height=40)
             bottom_half.add_widget(text_input)
             #add edit button to expanded info
-            edit_button = Button(text="Save", background_color='green')
+            edit_button = Button(text="Save", background_color='green', size_hint=(None, None), size=(80,80))
             edit_button.bind(on_press=lambda instance: self.on_edit(list, text_input.text))
             bottom_half.add_widget(edit_button)
             #add the delete button the the new menu
-            delete_button = Button(text="Delete", background_color='red')
+            delete_button = Button(text="Delete", background_color='red', size_hint=(None, None), size=(80,80))
             delete_button.bind(on_press=lambda instance: self.on_delete(list))
             bottom_half.add_widget(delete_button)
             #add the expanded section and change button text
