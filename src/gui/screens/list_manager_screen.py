@@ -8,7 +8,11 @@ from .list_form_screen import ListFormModal
 from .main_screen import MainScreen
 from ..utils.task_list import TaskList, JsonManager
 from ..utils.json_generator import JsonGenerator
+from ..utils.AI_caller import AICaller
+from .ai_form_screen import AIFormModal
+
 from kivy.app import App
+
 
 class ListItem(BoxLayout):
     def __init__(self, list, on_edit, on_delete, on_open, **kwargs):
@@ -22,10 +26,12 @@ class ListItem(BoxLayout):
 
         #make the top half of the layout
         top_half = BoxLayout(orientation='horizontal', size_hint_y=None, size=(100, 75))
-        top_half.add_widget(Label(text=list.title))
-        expand_button = Button(on_press=self.expand_and_collapse, text='expand')
+        title_layout = BoxLayout(orientation='horizontal')
+        title_layout.add_widget(Label(text=list.title))
+        top_half.add_widget(title_layout)
+        expand_button = Button(on_press=self.expand_and_collapse, text='expand', size_hint=(None, None), size=(80,80))
         top_half.add_widget(expand_button)
-        open_button = Button(on_press=lambda instance: on_open(list), text='open')
+        open_button = Button(on_press=lambda instance: on_open(list), text='open', size_hint=(None, None), size=(80,80))
         top_half.add_widget(open_button)
         self.add_widget(top_half)
 
@@ -33,7 +39,7 @@ class ListItem(BoxLayout):
         #get the task holder from the button
         list_item = instance.parent.parent
         #resize the holder to move the other tasks down
-        list_item.height=200
+        list_item.height=160
         #get the task info for the description
         list = list_item.list
 
@@ -46,14 +52,14 @@ class ListItem(BoxLayout):
             instance.text="expand" #change text
 
         else:
-            text_input = TextInput(text="New List Title", halign='left', size_hint=(None, None), size=(500, 100))
+            text_input = TextInput(text="New List Title", halign='left', size_hint_y=None, height=40)
             bottom_half.add_widget(text_input)
             #add edit button to expanded info
-            edit_button = Button(text="Save", background_color='green')
+            edit_button = Button(text="Save", background_color='green', size_hint=(None, None), size=(80,80))
             edit_button.bind(on_press=lambda instance: self.on_edit(list, text_input.text))
             bottom_half.add_widget(edit_button)
             #add the delete button the the new menu
-            delete_button = Button(text="Delete", background_color='red')
+            delete_button = Button(text="Delete", background_color='red', size_hint=(None, None), size=(80,80))
             delete_button.bind(on_press=lambda instance: self.on_delete(list))
             bottom_half.add_widget(delete_button)
             #add the expanded section and change button text
@@ -79,10 +85,16 @@ class ListMainScreen(BoxLayout):
         self.add_widget(scroll_view)
 
         # Buttons
-        button_layout = BoxLayout(size_hint_y=None, height=50)
+        button_layout = BoxLayout(size_hint_y=None, height=50, orientation='horizontal')
         add_button = Button(text="NEW LIST")
         add_button.bind(on_press=self.add_list)
+
+        ai_button = Button(text='AI')
+        ai_button.bind(on_press=self._prompt_ai)
+
         button_layout.add_widget(add_button)
+        button_layout.add_widget(ai_button)
+
         self.add_widget(button_layout)
 
         # Populate task list
@@ -101,9 +113,15 @@ class ListMainScreen(BoxLayout):
                                  )
             self.list_display.add_widget(list_item)
 
+    def _prompt_ai(self, instance):
+        form = AIFormModal(on_save=self.save_ai_list)
+        form.open()
+
+
     def add_list(self, instance):
         form = ListFormModal(on_save=self.save_new_list)
         form.open()
+
 
     def edit_list(self, list, input):
         new_title = input
@@ -123,6 +141,16 @@ class ListMainScreen(BoxLayout):
         new_list = TaskList(new_title, new_json_manager)
         self.master_list.add_list(new_list)
         self.refresh_list()
+
+    def save_ai_list(self, ai_data):
+        ai_title = ai_data['Title']
+        ai_text = AICaller.make_AI_tasklist(ai_data['Prompt'])
+        new_file_path = JsonGenerator.string_to_json(self, title=ai_title, content=ai_text)
+        new_json_manager = JsonManager(new_file_path)
+        new_list = TaskList(ai_title, new_json_manager)
+        self.master_list.add_list(new_list)
+        self.refresh_list()
+
 
 
     def open_list(self, list):

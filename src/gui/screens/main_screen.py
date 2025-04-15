@@ -4,7 +4,9 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from .task_form_screen import TaskFormModal
 from ..utils.task import Task
+from ..utils.AI_caller import AICaller
 import functools
+from .ai_form_screen import AIFormModal
 
 def compare_by_priority(task_one: Task, task_two: Task):
     if int(task_one.priority) < int(task_two.priority):
@@ -26,7 +28,7 @@ class TaskItem(BoxLayout):
         #make the top half of the layout
         top_half = BoxLayout(orientation='horizontal', size_hint_y=None, size=(100, 75))
         top_half.add_widget(Label(text=task.title))
-        expand_button = Button(on_press=self.expand_and_collapse, text='expand')
+        expand_button = Button(on_press=self.expand_and_collapse, text='expand', size_hint=(None, None), size=(80,80))
         top_half.add_widget(expand_button)
         self.add_widget(top_half)
 
@@ -34,7 +36,8 @@ class TaskItem(BoxLayout):
         #get the task holder from the button
         task_item = instance.parent.parent
         #resize the holder to move the other tasks down
-        task_item.height=200
+        task_item.height=350
+        task_item.width=400
         #get the task info for the description
         task = task_item.task
 
@@ -44,7 +47,7 @@ class TaskItem(BoxLayout):
         Time: {task.time}
         Priority: {task.priority}"""
 
-        bottom_half = BoxLayout(orientation = 'horizontal', size_hint_y=0.5)
+        bottom_half = BoxLayout(orientation = 'horizontal')
 
         #checks if the task is already expanded
         if len(task_item.children) > 1:
@@ -54,16 +57,20 @@ class TaskItem(BoxLayout):
         #TODO: add some logic to put newlines into description
         else:
             #add text and buttons to expanded info
-            bottom_half.add_widget(Label(text=text, halign='left', size_hint_x=None, size=(500, 100)))
+            text_layout=BoxLayout()
+            text_layout.add_widget(Label(text=text, halign='left', size_hint=(None, None), size=(800,500)))
+            button_layout = BoxLayout()
             #add edit button to expanded info
-            edit_button = Button(text="Edit", background_color='green')
+            edit_button = Button(text="Edit", background_color='green', size_hint=(None, None), size=(80,80))
             edit_button.bind(on_press=lambda instance: self.on_edit(task))
-            bottom_half.add_widget(edit_button)
+            button_layout.add_widget(edit_button)
             #add the delete button the the new menu
-            delete_button = Button(text="Delete", background_color='red')
-            delete_button.bind(on_press=lambda instance: self.on_delete(task))
-            bottom_half.add_widget(delete_button)
+            delete_button = Button(text="Delete", background_color='red', size_hint=(None, None), size=(80,80))
+            delete_button.bind(on_press=lambda instance: self.on_delete(task),)
+            button_layout.add_widget(delete_button)
             #add the expanded section and change button text
+            bottom_half.add_widget(text_layout)
+            bottom_half.add_widget(button_layout)
             task_item.add_widget(bottom_half)
             instance.text="collapse" #change text
 
@@ -93,6 +100,8 @@ class MainScreen(BoxLayout):
         sort_button = Button(text="Priority Sort")
         sort_button.bind(on_press=self.sort_tasks_button)
         button_layout.add_widget(sort_button)
+
+
         self.add_widget(button_layout)
 
         # Populate task list
@@ -115,6 +124,7 @@ class MainScreen(BoxLayout):
     def add_task(self, instance):
         form = TaskFormModal(on_save=self.save_new_task)
         form.open()
+
 
     def edit_task(self, task):
         form = TaskFormModal(task, on_save=self.save_edited_task)
@@ -154,6 +164,7 @@ class MainScreen(BoxLayout):
                         for key, value in task_data.items():
                             setattr(existing_task, key, value)
             self.refresh_task_list()
+
 
     def sort_by_priority(self):
         key = functools.cmp_to_key(compare_by_priority)

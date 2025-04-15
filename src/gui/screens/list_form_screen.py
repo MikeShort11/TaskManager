@@ -1,3 +1,4 @@
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.modalview import ModalView
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
@@ -12,22 +13,25 @@ class ListFormModal(ModalView):
         self.auto_dismiss = False
         self.input = None
 
-        layout = GridLayout(cols=2)
+        layout = BoxLayout(orientation='vertical', size_hint_y=None, height=200, pos_hint=(None, None))
+        button_layout=BoxLayout(size_hint_y=None, height=80)
 
-        layout.add_widget(Label(text="NEW TITLE:"))
+        layout.add_widget(Label(text="NEW TITLE:", size_hint_y=None, height=100))
 
-        text_input = TextInput(multiline=False)
+        text_input = TextInput(multiline=False, size_hint_y=None, height=80)
         layout.add_widget(text_input)
 
         self.input = text_input
 
-        save_button = Button(text="Save")
+        save_button = Button(text="Save", size_hint_y=None, height=80)
         save_button.bind(on_press=self.save)
-        layout.add_widget(save_button)
+        button_layout.add_widget(save_button)
 
-        cancel_button = Button(text="Cancel")
+        cancel_button = Button(text="Cancel", size_hint_y=None, height=80)
         cancel_button.bind(on_press=self.dismiss)
-        layout.add_widget(cancel_button)
+        button_layout.add_widget(cancel_button)
+
+        layout.add_widget(button_layout)
 
         self.add_widget(layout)
         self.on_save = on_save
