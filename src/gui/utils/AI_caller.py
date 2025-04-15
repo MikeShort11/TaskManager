@@ -5,7 +5,7 @@ import os
 
 load_dotenv()  # Load environment variables from .env file
 
-API_KEY = os.getenv("API_KEY")
+API_KEY = os.getenv("GEMINI_API_KEY")
 
 model="gemini-2.0-flash"
 client = genai.Client(api_key=API_KEY)
