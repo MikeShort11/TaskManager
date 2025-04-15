@@ -19,7 +19,7 @@ A Task manager for CS2450
 
    - Make the binary executable (macOS/Linux only):
    ```
-   chmod +x ~/Applications/[your folder name]/taskmanager
+   chmod +x ~/Applications/[your folder name]/{your_os}_taskmanger
    ```
 
 ## Setting up API KEY
