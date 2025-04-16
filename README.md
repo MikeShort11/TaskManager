@@ -16,11 +16,18 @@ A Task manager for CS2450
 
 2. **Place the binary in your desired location**
    - Create a folder for the application (if it doesn't exist already):
+      - This is where you will place the application and where it will create its json files
 
    - Make the binary executable (macOS/Linux only):
    ```
-   chmod +x ~/Applications/[your folder name]/{your_os}_taskmanger
+   chmod +x ~/PATH_TO_THE_PROGRAM
    ```
+   for example:
+   ```
+   chmod +x ~/home/user/Documents/taskmanger/linux_taskmanager
+   ```
+3. **trust the developers of the file**
+   - this will vary from system to system, but you may need to add addtional trust to the file to run it.
 
 ## Setting up API KEY
 
@@ -41,6 +48,7 @@ generate an api key at https://aistudio.google.com/app/apikey
    ```
    export GEMINI_API_KEY=[your api key]
    ```
+   *Do not include brackets [] in the key*
 
 3. Save and close the file
 
@@ -56,9 +64,15 @@ generate an api key at https://aistudio.google.com/app/apikey
 ### Windows
 
 1. press windows and type 'cmd'
-2. right click and press run as administrator
-3. enter the command: '''setx GEMINI_API_KEY "[your api key]" '''
-4. press enter and exit
+2. right click on the command line app and press run as administrator
+3. enter the command:
+   
+   ```
+   setx GEMINI_API_KEY "[your api key]"
+   ```
+   
+   *Do not include brackets [] in the key*
+5. press enter and exit
 
 ### Linux
 
@@ -74,6 +88,7 @@ generate an api key at https://aistudio.google.com/app/apikey
    ```
    export GEMINI_API_KEY=[your api key]
    ```
+   *Do not include brackets [] in the key*
 
 3. Save and close the file
 
@@ -81,7 +96,7 @@ generate an api key at https://aistudio.google.com/app/apikey
    ```
    source ~/.bashrc
    ```
-Now just run the exicutible in your folder to manage json task lists
+Now just run the exicutible inside your folder to manage json task lists
 ## Repository Link:
 https://github.com/MikeShort11/TaskManager
 
