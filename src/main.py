@@ -22,6 +22,12 @@ class TaskManagerApp(App):
     def set_return(self, task_list):
         self.return_task_list = task_list
 
+    def set_return_and_stop(self, task_list):
+        """Sets the return task list and stops the current app instance."""
+        self.set_return(task_list)
+        print("TaskManagerApp: Stopping app instance.")
+        self.stop()  # Stop the Kivy application loop
+
 class TaskListApp(App):
     def __init__(self, task_list, **kwargs):
         super().__init__(**kwargs)
