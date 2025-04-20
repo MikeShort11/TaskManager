@@ -1,0 +1,37 @@
+[
+    {
+        "title": "Mow the Lawn",
+        "date": "2025-04-21",
+        "time": "10:00",
+        "description": "Mow the entire front and back lawn, including trimming around trees and edges.",
+        "priority": "2"
+    },
+    {
+        "title": "Weed Garden Beds",
+        "date": "2025-04-22",
+        "time": "14:00",
+        "description": "Remove all weeds from the flower and vegetable garden beds.",
+        "priority": "3"
+    },
+    {
+        "title": "Trim Hedges",
+        "date": "2025-04-23",
+        "time": "16:00",
+        "description": "Trim the hedges along the property line to a uniform height and shape.",
+        "priority": "4"
+    },
+    {
+        "title": "Fertilize Lawn",
+        "date": "2025-04-24",
+        "time": "09:00",
+        "description": "Apply lawn fertilizer according to package instructions.",
+        "priority": "5"
+    },
+    {
+        "title": "Clean Gutters",
+        "date": "2025-04-25",
+        "time": "11:00",
+        "description": "Remove leaves and debris from gutters and downspouts.",
+        "priority": "1"
+    }
+]

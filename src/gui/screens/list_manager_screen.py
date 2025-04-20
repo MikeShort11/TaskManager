@@ -3,6 +3,9 @@ from kivy.uix.scrollview import ScrollView
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
+from kivy.uix.image import Image
+from kivy.uix.floatlayout import FloatLayout
+from kivy.clock import Clock
 
 from .list_form_screen import ListFormModal
 from .main_screen import MainScreen
@@ -12,6 +15,7 @@ from ..utils.AI_caller import AICaller
 from .ai_form_screen import AIFormModal
 
 from kivy.app import App
+import threading
 
 
 class ListItem(BoxLayout):
@@ -72,15 +76,17 @@ class ListMainScreen(BoxLayout):
         self.orientation = 'vertical'
         self.master_list = list_list
 
+        # Main content layout
+        main_content_layout = BoxLayout(orientation='vertical')
 
         # List display
         heading = Label(text="Lists:", font_size="40sp", size_hint_y=None, size_hint_x=.17)
-        self.add_widget(heading)
+        main_content_layout.add_widget(heading)
         self.list_display = BoxLayout(orientation='vertical', size_hint_y=None)
         self.list_display.bind(minimum_height=self.list_display.setter('height'))
         scroll_view = ScrollView()
         scroll_view.add_widget(self.list_display)
-        self.add_widget(scroll_view)
+        main_content_layout.add_widget(scroll_view)
 
         # Buttons
         button_layout = BoxLayout(size_hint_y=None, height=50, orientation='horizontal')
@@ -92,11 +98,30 @@ class ListMainScreen(BoxLayout):
 
         button_layout.add_widget(add_button)
         button_layout.add_widget(ai_button)
+        self.button_layout = button_layout # Store reference to disable/enable
 
-        self.add_widget(button_layout)
+        main_content_layout.add_widget(button_layout)
+
+
+        # Overlay for thinking animation
+        overlay_layout = FloatLayout()
+        self.loading_image = Image(
+            source='gui/thinking_anim.gif',
+            size_hint=(None, None),
+            size=(200, 200),
+            pos_hint={'center_x': 0.5, 'center_y': 0.5},
+            anim_delay=0.01,
+            opacity=0 # Start hidden
+        )
+        overlay_layout.add_widget(self.loading_image)
+
+        # Add layouts to the main screen
+        self.add_widget(main_content_layout)
+        self.add_widget(overlay_layout)
 
         # Populate task list
         self.refresh_list()
+
 
     def refresh_list(self):
         self.list_display.clear_widgets()
@@ -141,18 +166,74 @@ class ListMainScreen(BoxLayout):
         self.refresh_list()
 
     def save_ai_list(self, ai_data):
-        ai_title = ai_data['Title']
-        ai_text = AICaller().make_AI_tasklist(ai_data['Prompt'])
-        new_file_path = JsonGenerator.string_to_json(self, title=ai_title, content=ai_text)
-        new_json_manager = JsonManager(new_file_path)
-        new_list = TaskList(ai_title, new_json_manager)
-        self.master_list.add_list(new_list)
-        self.refresh_list()
+        """Starts the AI list creation process in a separate thread."""
+        # Show animation and disable buttons
+        self.loading_image.opacity = 1
+        self.button_layout.disabled = True
+        for item in self.list_display.children: # Disable list interaction too
+             if hasattr(item, 'disabled'):
+                 item.disabled = True
 
 
+        # Create and start the background thread
+        thread = threading.Thread(
+            target=self._perform_ai_list_creation,
+            args=(ai_data,) # Pass data needed by the thread
+        )
+        thread.daemon = True # Can exit app even if thread is running
+        thread.start()
 
-    def open_list(self, list):
-        App.get_running_app().set_return(list)
+    def _perform_ai_list_creation(self, ai_data):
+        """
+        Runs the blocking AI call and processing in the background thread.
+        Schedules the UI update on the main thread upon completion.
+        """
+        try:
+            ai_title = ai_data['Title']
+            print("Thread: Calling AI...") # Debug print
+            ai_text = AICaller().make_AI_tasklist(ai_data['Prompt']) # Blocking call
+            print("Thread: AI response received.") # Debug
+
+            # Process the response
+            new_file_path = JsonGenerator.string_to_json(self, title=ai_title, content=ai_text)
+            new_json_manager = JsonManager(new_file_path)
+            new_list = TaskList(ai_title, new_json_manager)
+            print(f"Thread: New list '{ai_title}' created.")
+
+            # Schedule the UI update on the main thread
+            Clock.schedule_once(lambda dt: self._on_ai_list_created(new_list, None))
+
+        except Exception as e:
+            print(f"Thread: Error during AI list creation: {e}") # Log the error
+            # Schedule the UI update (error state) on the main thread
+            Clock.schedule_once(lambda dt: self._on_ai_list_created(None, e))
+
+    def _on_ai_list_created(self, new_list, error):
+        """
+        This method runs on the main Kivy thread after the background thread finishes.
+        It updates the UI based on the result.
+        """
+        print("MainThread: AI callback received.") # Debug print
+        # Hide animation and re-enable buttons
+        self.loading_image.opacity = 0
+        self.button_layout.disabled = False
+        for item in self.list_display.children:
+             if hasattr(item, 'disabled'):
+                 item.disabled = False
+
+
+        if error:
+            print(f"MainThread: Displaying error popup.") # Debug
+        elif new_list:
+            print(f"MainThread: Adding list '{new_list.title}' and refreshing.") # Debug
+            self.master_list.add_list(new_list)
+            self.refresh_list()
+        else:
+             print("MainThread: Unknown state in AI callback.") # debug
+
+    @staticmethod
+    def open_list(lst):
+        App.get_running_app().set_return(lst)
         App.get_running_app().stop()
 
 

@@ -6,5 +6,37 @@
     {
         "title": "Party TODO",
         "JSON": "Party TODO.json"
+    },
+    {
+        "title": "",
+        "JSON": ".json"
+    },
+    {
+        "title": "",
+        "JSON": ".json"
+    },
+    {
+        "title": "Task manager app presentation",
+        "JSON": "Task manager app presentation.json"
+    },
+    {
+        "title": "Kitchen chores",
+        "JSON": "Kitchen chores.json"
+    },
+    {
+        "title": "Yard work",
+        "JSON": "Yard work.json"
+    },
+    {
+        "title": "Test list",
+        "JSON": "Test list.json"
+    },
+    {
+        "title": "Testing func",
+        "JSON": "Testing func.json"
+    },
+    {
+        "title": "New App",
+        "JSON": "New App.json"
     }
 ]
