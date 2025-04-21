@@ -1,37 +1,72 @@
 [
     {
-        "title": "Research Guitar Types",
+        "title": "Buy Guitar",
         "date": "2025-04-22",
-        "time": "Afternoon",
-        "description": "Investigate acoustic, electric, and classical guitars to determine which suits your preferences and budget.",
+        "time": "14:00",
+        "description": "Purchase an acoustic guitar suitable for beginners. Research online or visit a local music store for recommendations.",
         "priority": "1"
     },
     {
-        "title": "Set a Practice Schedule",
-        "date": "2025-04-23",
-        "time": "Evening",
-        "description": "Allocate specific times each week for guitar practice. Consistency is key!",
+        "title": "Purchase Guitar Accessories",
+        "date": "2025-04-22",
+        "time": "15:00",
+        "description": "Buy essential accessories like a guitar tuner (electronic or app), picks, a strap (optional), and a case or gig bag for storage.",
         "priority": "2"
     },
     {
         "title": "Find a Beginner Guitar Course",
+        "date": "2025-04-23",
+        "time": "10:00",
+        "description": "Search for online guitar lessons or find a local guitar teacher offering beginner courses. Consider free resources like YouTube tutorials to start.",
+        "priority": "2"
+    },
+    {
+        "title": "Learn Basic Guitar Chords",
         "date": "2025-04-24",
-        "time": "Morning",
-        "description": "Search for online resources, local guitar teachers, or beginner guitar classes.",
+        "time": "18:00",
+        "description": "Start learning basic chords like A, D, E, G, and C. Practice transitioning between chords smoothly.",
         "priority": "3"
     },
     {
-        "title": "Purchase a Guitar and Accessories",
+        "title": "Practice Strumming Patterns",
         "date": "2025-04-25",
-        "time": "Afternoon",
-        "description": "Buy a guitar, picks, a tuner, and potentially a strap (if electric/acoustic) based on your research.",
+        "time": "18:00",
+        "description": "Learn basic strumming patterns and practice playing along with simple songs using the chords you've learned.",
+        "priority": "3"
+    },
+    {
+        "title": "Practice Regularly",
+        "date": "2025-04-26",
+        "time": "17:00",
+        "description": "Set aside 30-60 minutes each day or every other day to practice consistently. Regular practice is key to improvement.",
         "priority": "1"
     },
     {
-        "title": "Practice Basic Chords",
-        "date": "2025-04-26",
-        "time": "Evening",
-        "description": "Start learning easy chords like G, C, D, and Em. Practice smooth transitions between them.",
-        "priority": "2"
+        "title": "Learn to Read Guitar Tabs",
+        "date": "2025-04-28",
+        "time": "19:00",
+        "description": "Understand how to read guitar tablature (tabs), which is a simplified way to represent guitar music. This will allow you to learn a wider variety of songs.",
+        "priority": "4"
+    },
+    {
+        "title": "Learn a Simple Song",
+        "date": "2025-04-29",
+        "time": "19:00",
+        "description": "Choose a simple song that you like and learn to play it using the chords and strumming patterns you've learned.",
+        "priority": "3"
+    },
+    {
+        "title": "Record Progress",
+        "date": "2025-05-05",
+        "time": "20:00",
+        "description": "Record yourself playing every few weeks to track your progress and identify areas where you need to improve.",
+        "priority": "5"
+    },
+    {
+        "title": "Join a Guitar Community",
+        "date": "2025-05-12",
+        "time": "20:00",
+        "description": "Join a local guitar group or an online forum to connect with other guitar players, share tips, and get feedback.",
+        "priority": "5"
     }
 ]

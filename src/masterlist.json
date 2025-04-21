@@ -1,22 +1,6 @@
 [
     {
-        "title": "Testing func",
-        "JSON": "Testing func.json"
-    },
-    {
-        "title": "New App",
-        "JSON": "New App.json"
-    },
-    {
-        "title": "Marathon",
-        "JSON": "Marathon.json"
-    },
-    {
         "title": "guitar",
         "JSON": "guitar.json"
-    },
-    {
-        "title": "game",
-        "JSON": "game.json"
     }
 ]

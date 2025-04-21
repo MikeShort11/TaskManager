@@ -37,7 +37,7 @@ class TaskItem(BoxLayout):
         # Top half setup
         top_half = BoxLayout(orientation='horizontal', size_hint_y=None, height=dp(50))
         top_half.add_widget(Label(text=task.title))
-        self.expand_button = Button(on_press=self.expand_and_collapse, text='expand', size_hint_x=0.3)
+        self.expand_button = Button(on_press=self.expand_and_collapse, text='Expand', size_hint_x=0.3)
         top_half.add_widget(self.expand_button)
         self.add_widget(top_half)
 
