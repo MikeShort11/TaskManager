@@ -18,7 +18,7 @@ class AICaller(AICallerBase):
     def __init__(self):
         if not AICaller._initialized:
             load_dotenv()  # Load environment variables from .env file
-            self.__API_KEY = os.getenv("API_KEY")
+            self.__API_KEY = os.getenv("GEMINI_API_KEY")
             self.client = genai.Client(api_key=self.__API_KEY)
             self.model = "gemini-2.0-flash"
             AICaller._initialized = True

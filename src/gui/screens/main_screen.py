@@ -28,7 +28,7 @@ class TaskItem(BoxLayout):
         super().__init__(**kwargs)
         self.orientation = 'vertical'
         self.task = task
-        self.on_delete = on_edit
+        self.on_delete = on_delete
         self.on_edit = on_edit
         self._collapsed_height = kwargs.get('height', dp(75))
         self._expanded_height_min = dp(200)
