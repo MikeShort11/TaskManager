@@ -1,0 +1,37 @@
+[
+    {
+        "title": "Research Guitar Types",
+        "date": "2025-04-22",
+        "time": "Afternoon",
+        "description": "Investigate acoustic, electric, and classical guitars to determine which suits your preferences and budget.",
+        "priority": "1"
+    },
+    {
+        "title": "Set a Practice Schedule",
+        "date": "2025-04-23",
+        "time": "Evening",
+        "description": "Allocate specific times each week for guitar practice. Consistency is key!",
+        "priority": "2"
+    },
+    {
+        "title": "Find a Beginner Guitar Course",
+        "date": "2025-04-24",
+        "time": "Morning",
+        "description": "Search for online resources, local guitar teachers, or beginner guitar classes.",
+        "priority": "3"
+    },
+    {
+        "title": "Purchase a Guitar and Accessories",
+        "date": "2025-04-25",
+        "time": "Afternoon",
+        "description": "Buy a guitar, picks, a tuner, and potentially a strap (if electric/acoustic) based on your research.",
+        "priority": "1"
+    },
+    {
+        "title": "Practice Basic Chords",
+        "date": "2025-04-26",
+        "time": "Evening",
+        "description": "Start learning easy chords like G, C, D, and Em. Practice smooth transitions between them.",
+        "priority": "2"
+    }
+]

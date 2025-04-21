@@ -1,0 +1,100 @@
+[
+    {
+        "title": "Assess Current Fitness Level",
+        "date": "2025-04-21",
+        "time": "14:00",
+        "description": "Evaluate current running ability, including longest run and average weekly mileage. Note any injuries or limitations.",
+        "priority": "1"
+    },
+    {
+        "title": "Create a Two-Week Marathon Training Plan",
+        "date": "2025-04-22",
+        "time": "09:00",
+        "description": "Develop an extremely condensed training schedule focusing on short, intense runs and rest. Adjust existing plan for the reduced timeframe. (Consider consulting a running coach given the short timeframe.)",
+        "priority": "1"
+    },
+    {
+        "title": "Long Run - Assess Endurance",
+        "date": "2025-04-23",
+        "time": "07:00",
+        "description": "Attempt a shorter long run (e.g., 10-12 miles) to gauge current endurance and identify potential issues. Adjust training plan accordingly.",
+        "priority": "2"
+    },
+    {
+        "title": "Speed Work - Interval Training",
+        "date": "2025-04-24",
+        "time": "18:00",
+        "description": "Incorporate interval training to improve speed and efficiency. Example: 8 x 400m repeats at target pace with equal recovery.",
+        "priority": "3"
+    },
+    {
+        "title": "Rest or Active Recovery",
+        "date": "2025-04-25",
+        "time": "Flexible",
+        "description": "Prioritize rest or engage in light active recovery (e.g., walking, stretching) to allow muscles to recover.",
+        "priority": "2"
+    },
+    {
+        "title": "Strength Training",
+        "date": "2025-04-26",
+        "time": "10:00",
+        "description": "Focus on core and leg strength exercises. Include squats, lunges, and planks. Keep it light to avoid injury.",
+        "priority": "4"
+    },
+    {
+        "title": "Long Run - Simulate Marathon Pace",
+        "date": "2025-04-27",
+        "time": "07:00",
+        "description": "Run a longer distance at your planned marathon pace to get a feel for the effort required. Adjust pace if needed.",
+        "priority": "2"
+    },
+    {
+        "title": "Tapering Week - Reduce Mileage",
+        "date": "2025-04-28",
+        "time": "All Day",
+        "description": "Begin tapering by reducing overall mileage. Focus on shorter, easier runs.",
+        "priority": "3"
+    },
+    {
+        "title": "Nutrition and Hydration Planning",
+        "date": "2025-04-29",
+        "time": "15:00",
+        "description": "Plan pre-race and race-day nutrition and hydration strategy. Practice with gels and electrolytes during training.",
+        "priority": "1"
+    },
+    {
+        "title": "Gear Check and Prep",
+        "date": "2025-04-30",
+        "time": "17:00",
+        "description": "Ensure all gear (shoes, clothing, accessories) is in good condition and ready for the race.",
+        "priority": "2"
+    },
+    {
+        "title": "Mental Preparation",
+        "date": "2025-05-01",
+        "time": "19:00",
+        "description": "Visualize the race and develop mental strategies to overcome challenges. Focus on positive self-talk.",
+        "priority": "3"
+    },
+    {
+        "title": "Final Short Run",
+        "date": "2025-05-02",
+        "time": "10:00",
+        "description": "Do a very short, easy run to loosen up before the race.",
+        "priority": "4"
+    },
+    {
+        "title": "Rest and Hydration",
+        "date": "2025-05-03",
+        "time": "All Day",
+        "description": "Prioritize rest, hydration, and carbohydrate loading.",
+        "priority": "1"
+    },
+    {
+        "title": "Marathon Day!",
+        "date": "2025-05-04",
+        "time": "Race Start Time",
+        "description": "Run the marathon. Pace yourself, stay hydrated, and enjoy the experience. Acknowledge the extreme challenge given the limited preparation time.",
+        "priority": "1"
+    }
+]

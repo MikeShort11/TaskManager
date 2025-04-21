@@ -1,0 +1,107 @@
+[
+    {
+        "title": "Register for a Marathon",
+        "date": "2025-04-22",
+        "time": "Morning",
+        "description": "Find a marathon two weeks from now and register. Check for availability and registration deadlines.",
+        "priority": "1"
+    },
+    {
+        "title": "Assess Current Fitness Level",
+        "date": "2025-04-21",
+        "time": "Afternoon",
+        "description": "Run a shorter distance (e.g., 5k or 10k) at your target marathon pace to gauge your current fitness and identify areas for improvement.",
+        "priority": "2"
+    },
+    {
+        "title": "Create a Two-Week Training Plan",
+        "date": "2025-04-22",
+        "time": "Afternoon",
+        "description": "Develop a training plan focused on maintaining your current fitness level. Include shorter runs, rest days, and potentially some cross-training. Avoid high-intensity workouts or long runs to prevent injury.",
+        "priority": "2"
+    },
+    {
+        "title": "Short Run and Strength Training",
+        "date": "2025-04-23",
+        "time": "Morning",
+        "description": "3-5 mile run at a comfortable pace. Follow with a light strength training session focusing on core and legs.",
+        "priority": "3"
+    },
+    {
+        "title": "Rest or Cross-Training",
+        "date": "2025-04-24",
+        "time": "Any",
+        "description": "Take a complete rest day or engage in light cross-training activities such as swimming or cycling.",
+        "priority": "4"
+    },
+    {
+        "title": "Tempo Run",
+        "date": "2025-04-25",
+        "time": "Morning",
+        "description": "Run 2-3 miles at a comfortably hard pace to maintain your speed and endurance.",
+        "priority": "3"
+    },
+    {
+        "title": "Short Run and Stretching",
+        "date": "2025-04-26",
+        "time": "Morning",
+        "description": "Easy 3-mile run with focus on stretching and flexibility.",
+        "priority": "4"
+    },
+    {
+        "title": "Longer Run (if appropriate)",
+        "date": "2025-04-27",
+        "time": "Morning",
+        "description": "If your assessment allows and you've been consistently running long distances, do a slightly longer run (no more than 10-12 miles) at an easy pace. Otherwise, stick to a shorter, comfortable run.",
+        "priority": "3"
+    },
+    {
+        "title": "Rest",
+        "date": "2025-04-28",
+        "time": "Any",
+        "description": "Full rest day.",
+        "priority": "5"
+    },
+    {
+        "title": "Easy Run",
+        "date": "2025-04-29",
+        "time": "Morning",
+        "description": "Short, easy run (3-4 miles) at a very comfortable pace.",
+        "priority": "4"
+    },
+    {
+        "title": "Strength Training",
+        "date": "2025-04-30",
+        "time": "Afternoon",
+        "description": "Light strength training focusing on legs and core.",
+        "priority": "4"
+    },
+    {
+        "title": "Rest or Cross-Training",
+        "date": "2025-05-01",
+        "time": "Any",
+        "description": "Take a rest day or engage in light cross-training.",
+        "priority": "5"
+    },
+    {
+        "title": "Easy Run",
+        "date": "2025-05-02",
+        "time": "Morning",
+        "description": "Short, easy run (3-4 miles).",
+        "priority": "4"
+    },
+    {
+        "title": "Rest",
+        "date": "2025-05-03",
+        "time": "Any",
+        "description": "Full rest day before the marathon.",
+        "priority": "5"
+    },
+    {
+        "title": "Marathon Day",
+        "date": "2025-05-04",
+        "time": "Morning",
+        "description": "Run the marathon! Pace yourself and listen to your body. Focus on finishing strong and enjoying the experience.",
+        "priority": "1"
+    }
+]
